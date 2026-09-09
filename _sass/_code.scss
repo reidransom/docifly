@@ -1,0 +1,129 @@
+// Copy-control presentation adapted from Expressive Code 0.44.0 (MIT).
+// Copyright (c) 2023 Tibor Schiemann; see assets/expressive-code-LICENSE.
+@layer starlyt {
+  #article pre {
+    max-width: 100%;
+    overflow: auto;
+    // Expressive Code adds a one-pixel inner border before its line padding.
+    padding: 0.75rem 3rem 0.75rem calc(0.90625rem + 1px);
+    border: 1px solid var(--code-border);
+    border-radius: 1px;
+    font: var(--sl-text-code) / var(--sl-line-height) var(--__sl-font-mono);
+    color: var(--code-text);
+    background: var(--code-bg);
+    tab-size: 2;
+  }
+  #article pre code {
+    all: unset;
+    font: inherit;
+    white-space: pre;
+  }
+  #article pre :is(.c, .ch, .cm, .c1, .cs, .cp, .cpf) {
+    color: var(--code-comment);
+  }
+  #article pre :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .o, .ow) {
+    color: var(--code-keyword);
+  }
+  #article pre :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss) {
+    color: var(--code-string);
+  }
+  #article pre :is(.m, .mb, .mf, .mh, .mi, .il, .mo) {
+    color: var(--code-number);
+  }
+  #article pre :is(.n, .na, .nb, .bp, .nc, .no, .nd, .ne, .nf, .fm, .nl, .nn, .nx) {
+    color: var(--code-name);
+  }
+  #article pre :is(.nt, .nv, .vc, .vg, .vi, .vm) {
+    color: var(--code-property);
+  }
+  #article .code-frame {
+    position: relative;
+    --copy-size: 2.5rem;
+  }
+  #article .code-frame > pre {
+    margin: 0;
+  }
+  #article .copy-button {
+    position: absolute;
+    right: calc(0.5rem + 1px);
+    top: calc(0.4rem + 1px);
+    width: var(--copy-size);
+    height: var(--copy-size);
+    margin: 0;
+    border: 0;
+    border-radius: 0.2rem;
+    padding: 0;
+    background: var(--code-bg);
+    color: var(--sl-color-text);
+    cursor: pointer;
+    opacity: 0.75;
+  }
+  #article .copy-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid currentColor;
+    border-radius: inherit;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  #article .copy-button svg {
+    display: block;
+    width: calc(100% - 0.95rem);
+    height: calc(100% - 0.95rem);
+    margin: 0.475rem;
+  }
+  #article .copy-button:focus-visible {
+    outline: revert;
+    outline-offset: 0;
+  }
+  #article .copy-button:hover,
+  #article .copy-button:focus-visible {
+    background: color-mix(in srgb, var(--sl-color-text) 20%, var(--code-bg));
+    opacity: 1;
+  }
+  #article .copy-feedback {
+    --feedback-bg: var(--code-success);
+    position: absolute;
+    right: calc(0.5rem + 1px + var(--copy-size) + 0.6rem);
+    top: calc(0.4rem + 1px);
+    padding: 0.125rem 0.75rem;
+    font: 0.9rem / 1.65 var(--__sl-font);
+    color: white;
+    background: var(--feedback-bg);
+    border-radius: 0.2rem;
+    pointer-events: none;
+    user-select: none;
+  }
+  #article .copy-feedback::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 0.35rem);
+    right: calc(-2 * (0.35rem - 0.5px));
+    border: 0.35rem solid transparent;
+    border-left-color: var(--feedback-bg);
+  }
+  #article .copy-feedback[data-error] {
+    --feedback-bg: var(--sl-color-red-low);
+    color: var(--sl-color-red-high);
+  }
+  #article .copy-feedback:empty {
+    display: none;
+  }
+  @media (hover: hover) {
+    #article .code-frame {
+      --copy-size: 2rem;
+    }
+    #article .copy-button {
+      opacity: 0;
+    }
+    #article .code-frame:hover .copy-button:not(:hover):not(:focus-visible),
+    #article .code-frame:focus-within .copy-button:not(:hover):not(:focus-visible) {
+      opacity: 0.75;
+    }
+    #article .copy-button:hover,
+    #article .copy-button:focus-visible {
+      opacity: 1;
+    }
+  }
+}

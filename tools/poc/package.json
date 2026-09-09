@@ -1,0 +1,19 @@
+{
+  "name": "starlyt-poc",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "reference": "node reference.mjs",
+    "capture": "node capture.mjs",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "pixelmatch": "7.1.0",
+    "playwright": "1.55.0",
+    "pngjs": "7.0.0",
+    "pnpm": "11.22.0",
+    "prettier": "3.3.3",
+    "typescript": "5.9.2"
+  }
+}
