@@ -1,0 +1,37 @@
+title: Starlyt
+lang: en
+theme: starlyt
+url: ""
+baseurl: ""
+navigation:
+  - label: Overview
+    link: /
+  - label: Guides
+    items:
+      - label: Getting started
+        link: /getting-started/
+      - label: Navigation
+        link: /navigation/
+      - label: Headings and table of contents
+        link: /headings/
+      - label: Reference
+        items:
+          - label: Markdown
+            link: /markdown/
+          - label: Code blocks
+            link: /code/
+          - label: Color modes and fallback behavior
+            link: /color-modes/
+      - label: Deployment
+        link: /deployment/
+  - label: Maintainers
+    items:
+      - label: Theme internals
+        link: /internals/
+      - label: Manual inspection of navigation, headings, and code
+        link: /inspection/
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
