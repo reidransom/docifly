@@ -4,7 +4,7 @@ A documentation theme for Jigyll, using stock Starlight as its visual and respon
 
 ## Preview the living documentation
 
-Prerequisites: Git and Jigyll. The supported setup was originally exercised with Jigyll 1.10.1. Run these commands from this repository's root, in a checkout named `starlyt`:
+Prerequisites: Git and Jigyll 1.12.0 or later. Run these commands from this repository's root, in a checkout named `starlyt`:
 
 ```sh
 jigyll new .poc/living-docs --theme "$PWD"

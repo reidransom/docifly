@@ -15,11 +15,12 @@ That makes the ordinary installed site the useful manual exercise surface. A dir
 
 | Source | Responsibility |
 | --- | --- |
-| `_layouts/default.html` | Document head, scripts/styles, skip link, fixed header, mobile menu button, navigation, page title, article, and TOC slot |
+| `_layouts/default.html` | Document head, scripts/styles, skip link, fixed header, mobile menu button, navigation, page title, article, and the captured server-rendered TOC |
 | `_includes/header.html` | Site-title link and initially hidden color selector |
 | `_includes/navigation.html` | Recursive ordered navigation, native group disclosures, and current-page marking |
+| `_includes/toc.html` | H2/H3 heading links from `page.headings`, preserving engine IDs and omitting ID-less or empty labels |
 
-The page title is a separate H1. The `#article` element contains the rendered Markdown and nothing from the surrounding shell. `#main-content` is the focusable reading target for the skip link. `#toc-slot` starts empty and stays empty when there are no eligible headings.
+The page title is a separate H1. The `#article` element contains the rendered Markdown and nothing from the surrounding shell. `#main-content` is the focusable reading target for the skip link. The layout captures `_includes/toc.html` before emitting the document, so `#toc-slot` and `data-has-toc` are absent when no eligible headings exist.
 
 Text labels and titles are escaped. Theme asset URLs and navigation links pass through `relative_url` and attribute escaping. Page URLs and navigation links must agree for the current-page marker to appear.
 
@@ -57,9 +58,9 @@ Session persistence stores group state and scroll position under a base-URL-spec
 
 ### Table of contents
 
-`assets/toc.js` discovers article H2/H3 headings with nonempty IDs and text. It creates an Overview entry plus heading links, switches between a rail and a disclosure, and maintains current-section feedback as reading position changes.
+`_includes/toc.html` renders an Overview entry and eligible H2/H3 entries from Jigyll 1.12.0's `page.headings` metadata. The engine collects that flat, article-ordered `{level, id, text}` list from rendered article HTML before layouts; it includes `.no_toc`, nested-Markdown, repeated, and explicit IDs unchanged. Starlyt skips entries without IDs or labels and does not derive replacement slugs.
 
-It measures heading positions after layout changes, font readiness, and loading. Scroll updates are scheduled with animation frames and locate the current section in the measured positions. Clicking an outline link focuses the emitted target. The enhancement does not inspect sidebar labels or include its own generated headings in discovery.
+`assets/toc.js` enhances the existing links. It switches between a rail and a disclosure, maintains current-section feedback from the article headings, and focuses the emitted target after link selection. It does not create, remove, or label TOC entries.
 
 ### Clipboard
 
@@ -69,7 +70,7 @@ Highlighting itself is server-side Jigyll/Chroma behavior. Differences from stoc
 
 ## Fallback and change discipline
 
-Without JavaScript, the default dark palette, content, links, images, native navigation, and server-highlighted code remain. Generated TOC, anchor controls, code copying, and mode selection are absent. Browser support for native popovers is still relevant to the mobile fallback.
+Without JavaScript, the default dark palette, content, links, images, native navigation, server-rendered TOC, and server-highlighted code remain. Anchor controls, active-section feedback, responsive TOC disclosure behavior, code copying, and mode selection are enhancements. Browser support for native popovers is still relevant to the mobile fallback.
 
 When changing theme behavior, update the explanation and its real example together. Inspect the installed consumer rather than adding a second demo implementation. The [manual-inspection guide](../inspection/) gives starting points without imposing automated testing or a screenshot baseline.
 

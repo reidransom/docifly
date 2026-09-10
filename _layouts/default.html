@@ -1,5 +1,7 @@
+{% capture toc %}{% include toc.html headings=page.headings %}{% endcapture %}
+{% assign toc = toc | strip %}
 <!doctype html>
-<html lang="{{ site.lang | default: 'en' | escape }}" data-theme="dark">
+<html lang="{{ site.lang | default: 'en' | escape }}" data-theme="dark"{% if toc != "" %} data-has-toc{% endif %}>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +23,7 @@
       {% include navigation.html items=site.navigation %}
     </nav>
     <div class="page-frame">
-      <aside id="toc-slot"></aside>
+      <aside id="toc-slot">{{ toc }}</aside>
       <main id="main-content" class="main-pane" tabindex="-1">
         <div class="content-panel"><div class="content-container"><h1 id="page-title">{{ page.title | escape }}</h1></div></div>
         <div class="content-panel"><div class="content-container"><article id="article" class="sl-markdown-content">{{ content }}</article></div></div>

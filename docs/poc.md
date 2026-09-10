@@ -22,7 +22,7 @@ Calibration: independent `reference-repeat` contexts passed all 40 historical co
 
 ## Theme installation and shared contract (30)
 
-Consumers run `jigyll new my-site --theme <git-url>`, set `title`, `navigation`, and a layout default in their own `_config.yml`, then run `jigyll build` or `jigyll serve`. Theme configuration/data are not merged. Jigyll 1.10.1 is the tested engine. There is no consumer Node/Astro/Sass dependency.
+Consumers run `jigyll new my-site --theme <git-url>`, set `title`, `navigation`, and a layout default in their own `_config.yml`, then run `jigyll build` or `jigyll serve`. Theme configuration/data are not merged. The POC tested Jigyll 1.10.1; current Starlyt requires Jigyll 1.12.0 or later. There is no consumer Node/Astro/Sass dependency.
 
 ```yaml
 title: My documentation
@@ -52,7 +52,7 @@ Shared implementation ownership is sequential:
 - Root `data-theme` is the effective `light`/`dark` palette. The selector's preference is separate (`auto`/`light`/`dark`), persisted under `starlight-theme`.
 - Early mode initialization runs synchronously in the head, before CSS and body; navigation, TOC, and code enhancements run as ordered deferred assets. No client renderer or hydration framework is involved.
 - `_sass/starlyt.scss` is the shared entry point, with focused partials for tokens, reset, navigation, TOC, and Markdown. Maintainers compile with `sass --no-source-map _sass/starlyt.scss assets/starlyt.css`. Shipped CSS is the consumer artifact.
-- Responsive transitions retain 50rem (800px) and 72rem (1152px), at default browser font settings. Automatic TOC/copy require JavaScript; fallback content must not display empty enhanced controls.
+- Responsive transitions retain 50rem (800px) and 72rem (1152px), at default browser font settings. The POC's automatic TOC and copy controls required JavaScript; the current heading TOC is server-rendered from Jigyll 1.12.0 metadata.
 
 ## Navigation, headings, Markdown, and modes (31–34)
 
@@ -88,7 +88,7 @@ An additional engine edge case is recorded in `heading-id-engine.json`: Jigyll 1
 
 [Ticket 16](../.scratch/starlight-theme/issues/16-syntax-fidelity.md) receives the code-token evidence: for example, Chroma emits the entire shell command as one plain span where Shiki distinguishes command/arguments/options. Native CSS cannot recover token boundaries that the renderer does not emit. No replacement renderer or consumer toolchain was introduced.
 
-Post-POC work remains separate: token-fidelity investigation, any upstream heading-metadata integration, broader browsers/devices and accessibility coverage, components, search, and Astro/configuration compatibility. None is claimed by this verdict.
+Post-POC work remains separate: token-fidelity investigation, broader browsers/devices and accessibility coverage, components, search, and Astro/configuration compatibility. The upstream heading-metadata interface released in Jigyll 1.12.0 is consumed by the current theme; it was not part of this POC verdict.
 
 ## Historical review and verification
 

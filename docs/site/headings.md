@@ -3,7 +3,7 @@ title: Headings and table of contents
 permalink: /headings/
 ---
 
-This page is a working heading example. Use **On this page** to visit its sections, then follow a heading's anchor link to share a location. The H2 and H3 entries are discovered from the rendered article, not from a second hand-maintained outline.
+This page is a working heading example. Use **On this page** to visit its sections, then follow a heading's anchor link to share a location. The layout renders its H2 and H3 entries from Jigyll's `page.headings` metadata, not from a second hand-maintained outline or browser discovery.
 
 ## Choose a heading level
 
@@ -19,13 +19,11 @@ Explain the goal before the details.
 Use examples readers can try.
 ```
 
-H2 and H3 headings with IDs appear in the generated table of contents. H4–H6 can have anchor links but are not included in that outline. The page title, sidebar group labels, and the TOC's own title are outside article discovery.
+Jigyll reports every article heading in article order, including `.no_toc` headings and headings produced by supported nested Markdown. Starlyt renders only H2 and H3 entries with nonempty IDs and labels; H4–H6 can have anchor links but are not included in that outline. Raw HTML headings without IDs are skipped. The page title, sidebar group labels, and the TOC's own title are outside article metadata.
 
 ### Link to the rendered ID
 
-Jigyll emits heading IDs. Starlyt reuses them and encodes fragments when making links; it does not invent a separate slug algorithm. To share a generated heading link, copy its rendered anchor URL rather than guessing how punctuation will be converted.
-
-The following repeated headings intentionally share visible text. Follow each **Review** entry in the outline to see the distinct IDs emitted by the engine.
+Jigyll 1.12.0 computes each `page.headings` entry after article Liquid, Markdown, nested Markdown, and content-level TOC processing, before the layout. Every entry has a numeric `level`, the emitted `id`, and decoded rendered `text`; metadata does not replace slugs or deduplicate collisions. Starlyt reuses those exact IDs, encodes them in fragment links, and escapes labels. Repeated or explicit IDs therefore remain repeated in the outline and retain the engine's existing target behavior.
 
 ## Author a change
 
@@ -67,6 +65,6 @@ At widths below 72rem—1152 CSS pixels with the default font setting—the outl
 
 ## Read without enhancement
 
-With JavaScript disabled, the engine-rendered heading IDs and ordinary fragment links still work. Automatic TOC generation and the added heading-anchor controls are absent. A page with no eligible H2/H3 headings does not display an empty TOC.
+With JavaScript disabled, the server-rendered outline and ordinary fragment links still work. JavaScript adds active-section feedback, responsive disclosure behavior, and heading-anchor controls. A page with no eligible H2/H3 headings does not display an empty TOC.
 
-The heading-ID behavior belongs to Jigyll; the discover-and-link behavior belongs to Starlyt. See [Theme internals](../internals/) for that division of responsibility.
+Heading metadata belongs to Jigyll; Starlyt's layout filters it to its H2/H3 outline. See [Theme internals](../internals/) for the ownership boundary.
