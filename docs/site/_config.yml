@@ -29,6 +29,8 @@ navigation:
           text: New!
           variant: success
           size: large
+      - label: Steps
+        link: /steps/
       - label: Headings and table of contents
         link: /headings/
       - label: Reference
