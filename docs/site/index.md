@@ -26,7 +26,7 @@ Then organize your [navigation](./navigation/), write [headings](./headings/), a
 
 ## Scope and limitations
 
-Starlyt currently provides a documentation shell, recursive navigation, heading navigation, Markdown/code presentation, and color modes. Search, Astro/MDX components, tabs, cards, and the full Starlight configuration interface are not part of this supported surface.
+Starlyt currently provides a documentation shell, recursive navigation, heading navigation, Markdown/code presentation, color modes, and local full-text search. Astro/MDX components, tabs, cards, and the full Starlight configuration interface are not part of this supported surface.
 
 **Visual parity** means agreement in appearance across an explicitly defined set of conditions. **Interaction parity** means agreement in observable control behavior. Using this site manually does not establish complete visual parity or interaction parity with stock Starlight.
 

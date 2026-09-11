@@ -39,6 +39,12 @@ Open [Code blocks](../code/) and copy the Python example into a plain text edito
 
 Copying needs JavaScript and browser Clipboard API support. HTTPS or a trustworthy local origin is appropriate. If permissions are denied, feedback should report failure rather than success. Where the API is missing entirely, normal text selection remains available without a misleading copy button.
 
+## Try search
+
+Open Search or press Control+K (Command+K on Apple devices), then confirm the input receives focus. Search a title, a heading, and a code term. A heading result links directly to its existing fragment. Press Escape to return focus to Search.
+
+Temporarily block `assets/search-data.json` in developer tools to see the visible failure state, then use Retry after unblocking it. With JavaScript disabled, Search remains disabled and cannot receive keyboard focus.
+
 ## Change color preferences
 
 Use the selector to choose Light, then navigate to another page. Try Dark and Auto too. With Auto selected, change the system color preference or use browser developer tools to emulate it; the effective palette should follow the system rather than retain an explicit choice.

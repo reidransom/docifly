@@ -1,4 +1,20 @@
 <a class="site-title" href="{{ '/' | relative_url | escape }}">{{ site.title | escape }}</a>
+<div id="site-search" data-corpus="{{ '/assets/search-data.json' | relative_url | escape }}">
+  <button id="search-toggle" type="button" disabled aria-label="Search" aria-keyshortcuts="Control+K">
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+    <span aria-hidden="true">Search</span>
+    <kbd aria-hidden="true"><kbd data-search-key>Ctrl</kbd><kbd>K</kbd></kbd>
+  </button>
+  <dialog id="search-dialog" aria-label="Search documentation">
+    <div class="search-dialog-frame">
+      <button id="search-close" type="button">Cancel</button>
+      <label for="search-input" class="sr-only">Search documentation</label>
+      <input id="search-input" type="search" autocomplete="off" placeholder="Search documentation">
+      <div id="search-status" role="status"></div>
+      <div id="search-results"></div>
+    </div>
+  </dialog>
+</div>
 <div id="mode-picker" hidden>
   <label>
     <span class="sr-only">Select theme</span>
