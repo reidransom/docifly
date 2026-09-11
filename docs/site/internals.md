@@ -46,7 +46,7 @@ The principal responsive transitions are 50rem for sidebar/menu placement and 72
 
 ## Browser enhancement ownership
 
-The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, prose, TOC, FlexSearch, search, then code. No client renderer or hydration framework is involved.
+The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, prose, TOC, FlexSearch, search, tabs, then code. No client renderer or hydration framework is involved.
 
 ### Color mode
 
@@ -68,6 +68,10 @@ Session persistence stores group state and scroll position under a base-URL-spec
 
 `assets/toc.js` enhances the existing links. It switches between a rail and a disclosure, maintains current-section feedback from the article headings, and focuses the emitted target after link selection. It does not create, remove, or label TOC entries.
 
+### Tabs
+
+`assets/tabs.js` enhances top-level `.tab-item` sections into the ARIA tabs pattern, assigns deterministic IDs from page-local DOM order, and keeps exact-label synchronization separate from focus. Versioned persistence is optional per sync key and storage failures retain in-memory behavior. Without the enhancer, every panel heading and body stays visible in source order.
+
 ### Clipboard
 
 `assets/code.js` finds code blocks inside the article and adds a focusable frame/control where the Clipboard API is available. It reads `code.textContent`, preserves whitespace, prevents overlapping copy attempts, and reports the actual write result. Syntax markup is left intact.
@@ -82,7 +86,7 @@ Highlighting itself is server-side Jigyll/Chroma behavior. Differences from stoc
 
 ## Fallback and change discipline
 
-Without JavaScript, the default dark palette, content, links, images, native navigation, server-rendered TOC, and server-highlighted code remain. Anchor controls, active-section feedback, responsive TOC disclosure behavior, code copying, and mode selection are enhancements. Browser support for native popovers is still relevant to the mobile fallback.
+Without JavaScript, the default dark palette, content, links, images, native navigation, server-rendered TOC, server-highlighted code, and every tab panel remain readable. Anchor controls, active-section feedback, responsive TOC disclosure behavior, code copying, tab selection/synchronization, and mode selection are enhancements. Browser support for native popovers is still relevant to the mobile fallback.
 
 When changing theme behavior, update the explanation and its real example together. Inspect the installed consumer rather than adding a second demo implementation. The [manual-inspection guide](../inspection/) gives starting points without imposing automated testing or a screenshot baseline.
 

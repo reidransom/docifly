@@ -16,6 +16,8 @@ navigation:
         link: /pages/
       - label: Cards and grids
         link: /cards/
+      - label: Tabs
+        link: /tabs/
       - label: Headings and table of contents
         link: /headings/
       - label: Reference
