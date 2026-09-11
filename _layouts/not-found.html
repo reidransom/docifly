@@ -1,0 +1,38 @@
+{% assign not_found_title = page.title | default: 'Page not found' %}
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' | escape }}" data-theme="dark" data-layout="splash">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ not_found_title | escape }} | {{ site.title | escape }}</title>
+    <script src="{{ '/assets/color-mode.js' | relative_url | escape }}"></script>
+    <link rel="stylesheet" href="{{ '/assets/starlyt.css' | relative_url | escape }}">
+    <script src="{{ '/assets/flexsearch-0.8.212.min.js' | relative_url | escape }}" defer></script>
+    <script src="{{ '/assets/search.js' | relative_url | escape }}" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">{% include header.html %}</header>
+    <div class="splash-frame">
+      <main id="main-content" class="main-pane splash-pane" tabindex="-1">
+        <div class="content-panel"><div class="content-container">
+          <div class="hero not-found-hero not-content">
+            <div class="hero-stack">
+              <div class="hero-copy">
+                <h1 id="page-title">{{ not_found_title | escape }}</h1>
+                {% if page.not_found.message %}{% assign message = page.not_found.message | strip %}{% if message != '' %}<p class="hero-tagline">{{ page.not_found.message | escape }}</p>{% endif %}{% endif %}
+              </div>
+              {% if page.not_found.links == nil %}
+                <div class="hero-actions"><a class="sl-link-button primary" href="{{ '/' | relative_url | escape }}">Back to home</a></div>
+              {% else %}
+                {% capture recovery_links %}{% for action in page.not_found.links %}{% include private/action-link.html action=action %}{% endfor %}{% endcapture %}
+                {% assign recovery_links = recovery_links | strip %}
+                {% if recovery_links != '' %}<div class="hero-actions">{{ recovery_links }}</div>{% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div></div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -9,6 +9,7 @@ Prerequisites: Git and Jigyll 1.12.0 or later. Run these commands from this repo
 ```sh
 jigyll new .poc/living-docs --theme "$PWD"
 cp -R docs/site/. .poc/living-docs/
+rm .poc/living-docs/404.html
 jigyll serve --source .poc/living-docs --host 127.0.0.1 --port 4322
 ```
 
