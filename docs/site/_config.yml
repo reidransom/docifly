@@ -14,6 +14,8 @@ navigation:
         link: /navigation/
       - label: Page layouts and heroes
         link: /pages/
+      - label: Cards and grids
+        link: /cards/
       - label: Headings and table of contents
         link: /headings/
       - label: Reference

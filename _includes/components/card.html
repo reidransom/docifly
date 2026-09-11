@@ -1,0 +1,7 @@
+{% assign card_title = include.title | strip %}
+{% if card_title != '' %}
+<article class="card not-content">
+  <p class="card-title">{{ include.title | escape }}</p>
+  {% if include.content %}<div class="card-body sl-markdown-content">{{ include.content | markdownify }}</div>{% endif %}
+</article>
+{% endif %}

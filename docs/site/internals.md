@@ -26,11 +26,13 @@ That makes the ordinary installed site the useful manual exercise surface. A dir
 
 The page type and hero are independent. A default page without `hero` gets one ordinary H1; either layout with `hero` gets one hero H1 instead. Splash and not-found pages retain the fixed header while omitting navigation, the mobile menu, and both sidebars. The not-found route remains consumer-owned because a theme cannot configure the host's missing-route behavior.
 
+Public content includes live under `_includes/components/`. Rich-card bodies are captured Markdown; `card-grid.html` receives already rendered component HTML and never Markdownifies it again. Link cards remain one native anchor rather than turning the whole card into a scripted control.
+
 Text labels and titles are escaped. Theme asset URLs and navigation links pass through `relative_url` and attribute escaping. Page URLs and navigation links must agree for the current-page marker to appear.
 
 ## Styles and shipped output
 
-`_sass/starlyt.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, color modes, search, and hero/page presentation, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
+`_sass/starlyt.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, and content components, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
 
 Consumers load `assets/starlyt.css`. Maintainers changing Sass compile that shipped artifact with a Sass CLI:
 
