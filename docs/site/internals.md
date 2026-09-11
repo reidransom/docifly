@@ -15,18 +15,21 @@ That makes the ordinary installed site the useful manual exercise surface. A dir
 
 | Source | Responsibility |
 | --- | --- |
-| `_layouts/default.html` | Document head, scripts/styles, skip link, fixed header, mobile menu button, navigation, page title, article, and the captured server-rendered TOC |
-| `_includes/header.html` | Site-title link and initially hidden color selector |
+| `_layouts/default.html` | Documentation shell with navigation, heading TOC, optional hero, article, and shared controls |
+| `_layouts/splash.html` | Wide shell without sidebars, with the same optional hero and shared controls |
+| `_includes/hero.html` | Escaped hero copy, validated consumer-hosted artwork, and ordered actions |
+| `_includes/private/action-link.html` | Validated action URL and shared primary, secondary, or minimal presentation |
+| `_includes/header.html` | Site-title link, search, and initially hidden color selector |
 | `_includes/navigation.html` | Recursive ordered navigation, native group disclosures, and current-page marking |
 | `_includes/toc.html` | H2/H3 heading links from `page.headings`, preserving engine IDs and omitting ID-less or empty labels |
 
-The page title is a separate H1. The `#article` element contains the rendered Markdown and nothing from the surrounding shell. `#main-content` is the focusable reading target for the skip link. The layout captures `_includes/toc.html` before emitting the document, so `#toc-slot` and `data-has-toc` are absent when no eligible headings exist.
+The page type and hero are independent. A default page without `hero` gets one ordinary H1; either layout with `hero` gets one hero H1 instead. Splash pages retain the fixed header while omitting navigation, the mobile menu, and both sidebars.
 
 Text labels and titles are escaped. Theme asset URLs and navigation links pass through `relative_url` and attribute escaping. Page URLs and navigation links must agree for the current-page marker to appear.
 
 ## Styles and shipped output
 
-`_sass/starlyt.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, and color modes, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
+`_sass/starlyt.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, color modes, search, and hero/page presentation, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
 
 Consumers load `assets/starlyt.css`. Maintainers changing Sass compile that shipped artifact with a Sass CLI:
 

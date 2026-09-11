@@ -1,0 +1,14 @@
+{% assign action_text = include.action.text | strip %}
+{% assign action_link = include.action.link | strip %}
+{% assign action_link_prefix = action_link | slice: 0, 1 %}
+{% assign action_link_http = action_link | slice: 0, 7 %}
+{% assign action_link_https = action_link | slice: 0, 8 %}
+{% assign action_variant = include.action.variant | default: 'primary' %}
+{% unless action_variant == 'primary' or action_variant == 'secondary' or action_variant == 'minimal' %}{% assign action_variant = 'primary' %}{% endunless %}
+{% if action_text != '' and action_link != '' %}
+  {% if action_link_prefix == '/' %}
+    <a class="sl-link-button {{ action_variant }}" href="{{ action_link | relative_url | escape }}">{{ include.action.text | escape }}</a>
+  {% elsif action_link_http == 'http://' or action_link_https == 'https://' %}
+    <a class="sl-link-button {{ action_variant }}" href="{{ action_link | escape }}">{{ include.action.text | escape }}</a>
+  {% endif %}
+{% endif %}

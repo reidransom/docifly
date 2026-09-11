@@ -12,6 +12,8 @@ navigation:
         link: /getting-started/
       - label: Navigation
         link: /navigation/
+      - label: Page layouts and heroes
+        link: /pages/
       - label: Headings and table of contents
         link: /headings/
       - label: Reference

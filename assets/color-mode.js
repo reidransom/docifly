@@ -18,7 +18,7 @@
     const select = document.getElementById('color-mode');
     const header = document.querySelector('header');
     const nav = document.getElementById('site-nav');
-    if (!picker || !(select instanceof HTMLSelectElement) || !header || !nav) return;
+    if (!picker || !(select instanceof HTMLSelectElement) || !header) return;
     const icon = picker.querySelector('svg path');
     const icons = {
       auto: 'M4 4h16v12H4z M1 20h22 M9 16v4m6-4v4',
@@ -45,9 +45,9 @@
     const desktop = matchMedia('(min-width: 50rem)');
     const placePicker = () => {
       const focused = document.activeElement === select;
-      (desktop.matches ? header : nav).append(picker);
-      if (focused && desktop.matches) select.focus();
-      if (focused && !desktop.matches) document.getElementById('menu-toggle')?.focus();
+      (desktop.matches || !nav ? header : nav).append(picker);
+      if (focused && (desktop.matches || !nav)) select.focus();
+      if (focused && !desktop.matches && nav) document.getElementById('menu-toggle')?.focus();
     };
     placePicker();
     desktop.addEventListener('change', placePicker);

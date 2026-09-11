@@ -1136,6 +1136,121 @@ how we do it.
     }
   }
 }
+/*! Hero geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors. */
+@layer starlyt {
+  .splash-frame {
+    min-height: 100vh;
+    padding-top: var(--sl-nav-height);
+  }
+  .splash-pane .content-container {
+    max-width: 80rem;
+    margin-inline: auto;
+  }
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  .hero-image {
+    object-fit: contain;
+    width: min(70%, 20rem);
+    height: auto;
+    margin-inline: auto;
+  }
+  .hero-image-light {
+    display: none;
+  }
+  [data-theme=light] .hero-image-dark {
+    display: none;
+  }
+  [data-theme=light] .hero-image-light {
+    display: block;
+  }
+  .hero-stack,
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-stack {
+    gap: clamp(1.5rem, 1.5rem + 1vw, 2rem);
+    text-align: center;
+  }
+  .hero-copy {
+    gap: 1rem;
+  }
+  .hero-copy > * {
+    max-width: 50ch;
+  }
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(var(--sl-text-3xl), 0.25rem + 5vw, var(--sl-text-6xl));
+  }
+  .hero-tagline {
+    font-size: clamp(var(--sl-text-base), 0.0625rem + 2vw, var(--sl-text-xl));
+    color: var(--sl-color-gray-2);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem;
+  }
+  .sl-link-button {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 999rem;
+    padding: 0.4375rem 1.125rem;
+    font-size: var(--sl-text-sm);
+    line-height: 1.1875;
+    text-decoration: none;
+    outline-offset: 0.25rem;
+  }
+  .sl-link-button.primary {
+    color: var(--sl-color-black);
+    background: var(--sl-color-text-accent);
+    border-color: var(--sl-color-text-accent);
+  }
+  .sl-link-button.primary:hover {
+    color: var(--sl-color-black);
+  }
+  .sl-link-button.secondary {
+    color: var(--sl-color-white);
+    border-color: currentColor;
+  }
+  .sl-link-button.minimal {
+    padding-inline: 0;
+    color: var(--sl-color-white);
+  }
+  @media (min-width: 50rem) {
+    .hero {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+      gap: 3%;
+      padding-block: clamp(2.5rem, 1rem + 10vmin, 10rem);
+    }
+    .hero-image {
+      order: 2;
+      width: min(100%, 25rem);
+    }
+    .hero-stack {
+      text-align: start;
+    }
+    .hero-stack,
+    .hero-copy {
+      align-items: flex-start;
+    }
+    .hero-actions {
+      justify-content: flex-start;
+    }
+    .sl-link-button {
+      padding: 0.9375rem 1.25rem;
+      font-size: var(--sl-text-base);
+    }
+  }
+}
 /*! Shell geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors.
  * See assets/starlight-LICENSE. Consumers use the compiled assets/starlyt.css. */
 @layer starlight.reset, starlight.base, starlyt;
