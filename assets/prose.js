@@ -5,6 +5,14 @@
       !heading.textContent.trim()
     )
       return;
+    const badgeContainer = heading.nextElementSibling;
+    const headingBadge =
+      badgeContainer instanceof HTMLParagraphElement &&
+      badgeContainer.childElementCount === 1 &&
+      badgeContainer.firstElementChild?.matches('.sl-badge') &&
+      badgeContainer.textContent.trim() === badgeContainer.firstElementChild.textContent.trim()
+        ? badgeContainer.firstElementChild
+        : null;
     const wrapper = document.createElement('div');
     wrapper.className = 'sl-heading-wrapper level-' + heading.tagName.toLowerCase();
     const link = document.createElement('a');
@@ -28,6 +36,11 @@
     icon.append(svg);
     link.append(icon);
     heading.before(wrapper);
-    wrapper.append(heading, link);
+    wrapper.append(heading);
+    if (headingBadge) {
+      wrapper.append(headingBadge);
+      badgeContainer.remove();
+    }
+    wrapper.append(link);
   });
 })();

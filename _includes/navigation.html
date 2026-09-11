@@ -7,7 +7,9 @@
         {% include navigation.html items=entry.items %}
       </details>
     {% else %}
-      <a href="{{ entry.link | relative_url | escape }}"{% if page.url == entry.link %} aria-current="page"{% endif %}>{{ entry.label | escape }}</a>
+      {% assign navigation_aria_label = entry.aria_label | strip %}
+      {% assign navigation_badge_hidden = false %}{% if navigation_aria_label != '' %}{% assign navigation_badge_hidden = true %}{% endif %}
+      <a href="{{ entry.link | relative_url | escape }}"{% if page.url == entry.link %} aria-current="page"{% endif %}>{% if navigation_aria_label != '' %}<span class="sr-only">{{ entry.aria_label | escape }}</span><span aria-hidden="true">{{ entry.label | escape }}</span>{% else %}<span>{{ entry.label | escape }}</span>{% endif %}{% if entry.badge %}{% include components/badge.html text=entry.badge.text variant=entry.badge.variant size=entry.badge.size aria_hidden=navigation_badge_hidden %}{% endif %}</a>
     {% endif %}
   </li>
   {% endfor %}

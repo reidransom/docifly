@@ -21,14 +21,14 @@ That makes the ordinary installed site the useful manual exercise surface. A dir
 | `_includes/hero.html` | Escaped hero copy, validated consumer-hosted artwork, and ordered actions |
 | `_includes/private/action-link.html` | Validated action URL and shared primary, secondary, or minimal presentation |
 | `_includes/header.html` | Site-title link, search, and initially hidden color selector |
-| `_includes/navigation.html` | Recursive ordered navigation, native group disclosures, and current-page marking |
+| `_includes/navigation.html` | Recursive ordered navigation, native group disclosures, current-page marking, and optional link badges |
 | `_includes/toc.html` | H2/H3 heading links from `page.headings`, preserving engine IDs and omitting ID-less or empty labels |
 
 The page type and hero are independent. A default page without `hero` gets one ordinary H1; either layout with `hero` gets one hero H1 instead. Splash and not-found pages retain the fixed header while omitting navigation, the mobile menu, and both sidebars. The not-found route remains consumer-owned because a theme cannot configure the host's missing-route behavior.
 
-Public content includes live under `_includes/components/`. Rich-card bodies are captured Markdown; `card-grid.html` receives already rendered component HTML and never Markdownifies it again. Link cards remain one native anchor rather than turning the whole card into a scripted control.
+Public content includes live under `_includes/components/`. `badge.html` validates escaped text variants and sizes; a badge placed on the source line after a heading is styled beside it without entering the heading's ID or navigation label. Rich-card bodies are captured Markdown; `card-grid.html` receives already rendered component HTML and never Markdownifies it again. Link cards remain one native anchor rather than turning the whole card into a scripted control.
 
-Text labels and titles are escaped. Theme asset URLs and navigation links pass through `relative_url` and attribute escaping. Page URLs and navigation links must agree for the current-page marker to appear.
+Text labels and titles are escaped. A navigation badge contributes to its link name unless an equivalent `aria_label` supplies that name and hides redundant visible text from assistive technology. Theme asset URLs and navigation links pass through `relative_url` and attribute escaping. Page URLs and navigation links must agree for the current-page marker to appear.
 
 ## Styles and shipped output
 

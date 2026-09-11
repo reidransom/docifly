@@ -18,6 +18,17 @@ navigation:
         link: /cards/
       - label: Tabs
         link: /tabs/
+        aria_label: Tabs, stable
+        badge:
+          text: Stable
+          variant: note
+          size: small
+      - label: Badges
+        link: /badges/
+        badge:
+          text: New!
+          variant: success
+          size: large
       - label: Headings and table of contents
         link: /headings/
       - label: Reference

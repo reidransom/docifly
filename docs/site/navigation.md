@@ -37,6 +37,10 @@ Navigation links exclude `baseurl`: configure `/markdown/`, not `/docs/markdown/
 
 Labels are escaped text, not HTML. Their order comes from configuration, not alphabetical sorting or filename order. Long labels can wrap. The manual-inspection entry is deliberately verbose so that this behavior is visible in normal use.
 
+### Add a link badge
+
+Link entries may add a `badge` mapping with escaped plain-text `text`, a documented badge `variant`, and a documented `size`. Badge text participates in the link name unless an `aria_label` already contains equivalent context; in that case the redundant badge is hidden from assistive technology. Group labels do not receive badges. See the [badge guide](../badges/) for the complete interface.
+
 ## Use groups
 
 Select a group heading to collapse or expand it. Groups are native disclosures and initially open. With JavaScript, their state and the sidebar scroll position are saved for the browser session. Changing the navigation structure invalidates that saved arrangement.
