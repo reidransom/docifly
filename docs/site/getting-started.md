@@ -7,7 +7,7 @@ Install Starlyt as a Git theme, then write ordinary Markdown in your own Jigyll 
 
 ## Install a consumer
 
-Install Git and Jigyll 1.12.0 or later first. You do not need Node.js, Astro, a Jigyll plugin, or a Sass compiler to use the shipped theme.
+Install Git and Jigyll 1.13.0 or later first. You do not need Node.js, Astro, a Jigyll plugin, or a Sass compiler to use the shipped theme.
 
 From a local checkout named `starlyt`, create a new sibling site:
 

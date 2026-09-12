@@ -2,10 +2,10 @@
   if (!navigator.clipboard?.writeText) return;
   document.querySelectorAll('#article pre').forEach((pre) => {
     const code = pre.querySelector('code');
-    if (!code || pre.parentElement.classList.contains('code-frame')) return;
-    const frame = pre.parentElement.classList.contains('highlight')
-      ? pre.parentElement
-      : document.createElement('div');
+    if (!code || pre.closest('.code-frame')) return;
+    const semanticFrame = pre.closest('figure.highlight[data-code-frame]');
+    const frame = semanticFrame
+      || (pre.parentElement.classList.contains('highlight') ? pre.parentElement : document.createElement('div'));
     frame.classList.add('code-frame');
     if (!frame.contains(pre)) {
       pre.before(frame);

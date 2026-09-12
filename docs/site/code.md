@@ -25,6 +25,60 @@ baseurl: ""
 
 Compare the two blocks: copying the outer example includes the Markdown fence, while copying the YAML block yields only its code text.
 
+## Add a code frame
+
+Jigyll 1.13.0 adds fenced-code UI metadata after the language. A nonempty
+double-quoted `title` creates an editor frame for ordinary languages:
+
+```javascript title="site.config.js"
+export const theme = "starlyt";
+```
+
+An explicit frame does not require a title:
+
+```yaml frame="editor"
+theme: starlyt
+```
+
+A title infers a terminal frame for `bash`, `sh`, `shell`, `console`,
+`powershell`, and `ps1`:
+
+```bash title="Installing dependencies…"
+jigyll build --source docs
+```
+
+Use `frame="terminal"` to select terminal presentation explicitly:
+
+```console frame="terminal"
+$ jigyll --version
+```
+
+Use `frame="none"` to retain the existing unframed output:
+
+```json frame="none"
+{"frame":false}
+```
+
+Explicit `frame` wins over language inference. `title` and `frame` may appear
+in either order. Inside their double-quoted values, `\\` represents a literal
+backslash and `\"` represents a literal quote:
+
+```text title="A \"quoted\" title with a \\ path and enough additional text to remain bounded on a narrow screen"
+The title is outside this copied source.
+```
+
+Unknown metadata keeps Jigyll's compatibility behavior and does not create a
+frame:
+
+```text future="retained"
+This remains an ordinary code block.
+```
+
+Malformed recognized metadata fails the build with the source path and line.
+Errors include an unquoted or empty title, an unsupported escape, duplicate
+`title` or `frame` tokens, an unterminated value, an unsupported frame name,
+and combining a title with `frame="none"`.
+
 ## Preserve whitespace
 
 Copy the following Python into a plain text editor. Indentation, the blank line, and the source's line breaks should remain intact:
@@ -43,7 +97,7 @@ Starlyt reads the rendered `code.textContent` for copying. It does not trim the 
 
 This deliberately long JSON line is useful for inspecting horizontal scrolling inside a block. Scroll the block rather than widening the entire document:
 
-```json
+```json title="wide.json"
 {"site":"Starlyt","workflow":["write ordinary Markdown","install the theme through Jigyll","build the separate consumer","read the generated documentation","try the navigation and clipboard controls at a narrow window width"],"automatedTesting":false}
 ```
 
@@ -73,4 +127,4 @@ Try copying a block and pasting it into an editor. If your browser allows per-si
 
 Chroma's token boundaries and colors can differ from the highlighter used by stock Starlight. Readable highlighting is not proof of exact syntax-token visual parity. The theme does not replace Jigyll's renderer to recover token distinctions it never emitted.
 
-Code titles, line numbers, markers, playgrounds, and Astro/MDX code APIs are not promised by this surface. Use ordinary fences and [documented Markdown](../markdown/) rather than assuming upstream component syntax works here.
+Line markers, line numbers, playgrounds, and Astro/MDX code APIs are not promised by this surface. Use ordinary fences and [documented Markdown](../markdown/) rather than assuming upstream component syntax works here.

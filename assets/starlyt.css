@@ -836,6 +836,73 @@ how we do it.
   #article .code-frame > pre {
     margin: 0;
   }
+  #article figure.highlight[data-code-frame] {
+    position: relative;
+    display: block;
+    min-width: 0;
+    margin: 0;
+    background: var(--sl-color-black);
+    border-radius: 1px;
+  }
+  #article figure.highlight[data-code-frame] > pre {
+    margin: 0;
+  }
+  #article figure.highlight[data-code-frame] > .code-title {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--sl-color-gray-2);
+    font: 0.9rem/1.65 var(--__sl-font);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  #article figure.highlight[data-code-frame=editor] > .code-title {
+    width: fit-content;
+    max-width: 100%;
+    padding: calc(0.25rem + 1px) 1rem;
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-block-start-color: var(--sl-color-accent-high);
+    border-block-end: 0;
+  }
+  #article figure.highlight[data-code-frame] > .code-title + pre {
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+  }
+  #article figure.highlight[data-code-frame=terminal]::before {
+    display: block;
+    height: 2.0475rem;
+    content: "";
+    background: var(--sl-color-black);
+    border: 1px solid var(--code-border);
+    border-block-end: 0;
+  }
+  #article figure.highlight[data-code-frame=terminal]::after {
+    position: absolute;
+    inset-block-start: 0.805rem;
+    inset-inline-start: 1rem;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    color: var(--sl-color-gray-4);
+    content: "";
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow: 0.75rem 0 currentColor, 1.5rem 0 currentColor;
+    opacity: 0.75;
+  }
+  #article figure.highlight[data-code-frame=terminal] > .code-title {
+    position: absolute;
+    inset: 0 0 auto;
+    display: block;
+    padding: 0.25rem 3.5rem 0.3125rem;
+    overflow: hidden;
+    font-weight: 500;
+    letter-spacing: 0.025ch;
+    text-align: center;
+  }
+  [data-theme=light] #article figure.highlight[data-code-frame],
+  [data-theme=light] #article figure.highlight[data-code-frame=terminal]::before {
+    background: var(--sl-color-gray-6);
+  }
   #article .copy-button {
     position: absolute;
     right: calc(0.5rem + 1px);

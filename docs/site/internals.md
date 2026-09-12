@@ -73,7 +73,7 @@ Session persistence stores group state and scroll position under a base-URL-spec
 
 ### Clipboard
 
-`assets/code.js` finds code blocks inside the article and adds a focusable frame/control where the Clipboard API is available. It reads `code.textContent`, preserves whitespace, prevents overlapping copy attempts, and reports the actual write result. Syntax markup is left intact.
+Jigyll parses fenced-code metadata and emits the semantic `figure.highlight[data-code-frame]` seam, escaped caption, and unchanged server-highlighted code. `assets/code.js` treats that figure as the canonical frame container, adds native code/copy focus stops when the Clipboard API is available, reads only `code.textContent`, prevents overlapping copy attempts, and reports the actual write result. Untitled and unframed blocks retain the same enhancer without browser-side source parsing.
 
 ### Search
 
@@ -81,7 +81,7 @@ Session persistence stores group state and scroll position under a base-URL-spec
 
 `assets/flexsearch-0.8.212.min.js` is the pinned Apache-2.0 FlexSearch browser bundle; its license is retained in `assets/flexsearch-LICENSE`. `assets/search.js` normalizes case and canonical Unicode form, requires every token, and allows a prefix only on the final token. It verifies exact matches itself after FlexSearch finds candidates, ranks title/heading/body hits deterministically, and uses text-only DOM APIs for corpus values. The disabled control remains unavailable without JavaScript; the native dialog supplies loading, guidance, results, failure, and retry states.
 
-Highlighting itself is server-side Jigyll/Chroma behavior. Differences from stock Starlight's code highlighter cannot be repaired by inventing tokens in CSS or the copy handler.
+Highlighting and fenced-code metadata parsing are server-side Jigyll/Chroma behavior. Differences from stock Starlight's code highlighter cannot be repaired by inventing tokens in CSS or the copy handler.
 
 ## Fallback and change discipline
 
