@@ -93,6 +93,31 @@ article. Browser paper size, 12 mm margins, scale, headers/footers, and
 background-graphics behavior remain print-dialog or automation settings rather
 than theme configuration.
 
+### Maintainer browser acceptance
+
+`tools/browser/` is a maintainer-only Playwright gate. Its package lock pins
+Playwright, `browser-revisions.json` records the corresponding Chromium,
+Firefox, and WebKit revisions, and the preparation step builds the shared
+overview, long-guide, and code fixtures at both `/` and `/docs/`. Node,
+Playwright, and downloaded browsers are not part of a Jigyll consumer install.
+
+Run the gate on a Playwright-supported Linux host:
+
+```sh
+cd tools/browser
+npm ci
+npx playwright install --with-deps chromium firefox webkit
+JIGYLL=/path/to/jigyll npm test
+```
+
+The generated `.artifacts/environment.json` records the platform, Jigyll and
+theme revisions, package-lock digest, browser revisions, color modes, pages,
+and viewports. The JSON reporter records each project result. Failure
+screenshots and traces are diagnostic artifacts, not visual-parity baselines.
+The verdict applies only to those pinned Playwright binaries on Linux.
+Playwright WebKit is not Safari evidence; Edge, real Safari, mobile devices,
+physical devices, and accessibility certification remain outside this gate.
+
 ## Fallback and change discipline
 
 Without JavaScript, the default dark palette, content, links, images, native navigation, server-rendered TOC, server-highlighted code, and every tab panel remain readable. Anchor controls, active-section feedback, responsive TOC disclosure behavior, code copying, tab selection/synchronization, and mode selection are enhancements. Browser support for native popovers is still relevant to the mobile fallback.
@@ -103,4 +128,6 @@ When changing theme behavior, update the explanation and its real example togeth
 
 Stock Starlight and Expressive Code attribution remains in the shipped license assets. The frozen 130-name public icon paths are covered by `assets/starlight-LICENSE`; the separate Seti file-icon inventory used by file trees retains its notice in `assets/file-tree-icons-LICENSE`. The frozen stock Starlight POC revision was `39d4e71f23b3fb6fde0e77eb983fcd38629b70b9`; historical findings and code-token limitations are recorded in the repository's `docs/poc.md` and `evidence/poc/`.
 
-The Node.js POC tooling was removed without replacement. Those historical results are not a current automated gate or proof of complete visual parity, interaction parity, or Astro compatibility.
+The legacy Node.js POC tooling was removed. The maintainer gate above is the
+current acceptance evidence; it does not prove complete visual parity,
+interaction parity, or Astro compatibility.

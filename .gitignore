@@ -3,3 +3,5 @@ _site/
 tools/poc/node_modules/
 .scratch/
 __pycache__/
+tools/browser/node_modules/
+tools/browser/.artifacts/

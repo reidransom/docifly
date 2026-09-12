@@ -9,6 +9,17 @@
     document.getElementById('toc-slot'),
   ];
   const groups = Array.from(nav.querySelectorAll('details'));
+  let lastFocus = null;
+  document.addEventListener('focusin', (event) => {
+    lastFocus = event.target === toggle || nav.contains(event.target) ? event.target : null;
+  });
+  document.addEventListener(
+    'pointerdown',
+    (event) => {
+      if (event.target !== toggle && !nav.contains(event.target)) lastFocus = null;
+    },
+    true,
+  );
   const signature = JSON.stringify(
     Array.from(nav.querySelectorAll('a, summary'), (el) => [
       el.textContent.trim(),
@@ -66,14 +77,30 @@
     )
       nav.hidePopover();
   });
-  desktop.addEventListener('change', () => {
-    const focusWasInMenu = nav.contains(document.activeElement);
-    const focusWasOnToggle = document.activeElement === toggle;
+  let desktopState = desktop.matches;
+  const updateBreakpoint = () => {
+    if (desktop.matches === desktopState) return;
+    desktopState = desktop.matches;
+    const currentFocus =
+      document.activeElement === toggle || nav.contains(document.activeElement)
+        ? document.activeElement
+        : lastFocus;
+    const focusWasInMenu = nav.contains(currentFocus);
+    const focusWasOnToggle = currentFocus === toggle;
+    let focusTarget = null;
+    if (!desktop.matches && focusWasInMenu) focusTarget = toggle;
+    if (desktop.matches && (focusWasInMenu || focusWasOnToggle))
+      focusTarget = nav.querySelector('a');
+    const expectedDesktop = desktop.matches;
     if (nav.matches(':popover-open')) nav.hidePopover();
     update();
-    if (!desktop.matches && focusWasInMenu) toggle.focus();
-    if (desktop.matches && (focusWasInMenu || focusWasOnToggle)) nav.querySelector('a')?.focus();
-  });
+    if (focusTarget instanceof HTMLElement)
+      requestAnimationFrame(() => {
+        if (desktop.matches === expectedDesktop) focusTarget.focus();
+      });
+  };
+  desktop.addEventListener('change', updateBreakpoint);
+  new ResizeObserver(updateBreakpoint).observe(document.documentElement);
   document.addEventListener('keydown', (event) => {
     if (!nav.matches(':popover-open') || desktop.matches) return;
     if (event.key === 'Escape') {

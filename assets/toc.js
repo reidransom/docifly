@@ -12,14 +12,46 @@
   );
   const entries = links.map((link) => link.textContent.trim());
   const desktop = matchMedia('(min-width: 72rem)');
+  let lastFocus = null;
+  details.addEventListener('focusin', (event) => {
+    lastFocus = event.target;
+  });
+  details.addEventListener('focusout', (event) => {
+    if (event.relatedTarget instanceof Node && !details.contains(event.relatedTarget))
+      lastFocus = null;
+  });
+  document.addEventListener(
+    'pointerdown',
+    (event) => {
+      if (event.target instanceof Node && !details.contains(event.target)) lastFocus = null;
+    },
+    true,
+  );
   const resize = () => {
-    const hadFocus = details.contains(document.activeElement);
+    const currentFocus = details.contains(document.activeElement)
+      ? document.activeElement
+      : lastFocus;
+    const hadFocus = currentFocus !== null;
+    const summaryHadFocus = currentFocus === summary;
     details.open = desktop.matches;
-    if (!desktop.matches && hadFocus) summary.focus();
-    if (desktop.matches && document.activeElement === summary) links[0].focus();
+    let focusTarget = null;
+    if (!desktop.matches && hadFocus) focusTarget = summary;
+    if (desktop.matches && summaryHadFocus) focusTarget = links[0];
+    const expectedDesktop = desktop.matches;
+    if (focusTarget)
+      requestAnimationFrame(() => {
+        if (desktop.matches === expectedDesktop) focusTarget.focus();
+      });
+  };
+  let desktopState = desktop.matches;
+  const updateBreakpoint = () => {
+    if (desktop.matches === desktopState) return;
+    desktopState = desktop.matches;
+    resize();
   };
   resize();
-  desktop.addEventListener('change', resize);
+  desktop.addEventListener('change', updateBreakpoint);
+  new ResizeObserver(updateBreakpoint).observe(document.documentElement);
   nav.addEventListener('click', (event) => {
     if (!(event.target instanceof HTMLAnchorElement)) return;
     if (!desktop.matches) details.open = false;
