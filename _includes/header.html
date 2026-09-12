@@ -17,6 +17,7 @@
   </dialog>
   {% if page.language %}<script id="search-corpus" type="application/json">{% include private/search-corpus.html %}</script>{% endif %}
 </div>
+{% include private/language-picker.html %}
 <div id="mode-picker" hidden>
   <label>
     <span class="sr-only">{% include private/ui-message.html key='starlyt.color_mode.label' default='Select theme' %}</span>

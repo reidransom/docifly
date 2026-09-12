@@ -40,6 +40,18 @@ metadata. Jigyll omits unavailable editions; Starlyt does not publish default
 content under a missing locale route. Use Jigyll's `required_translations`
 option when selected locales must contain every default-language edition.
 
+## Switch between published editions
+
+When a page has at least two editions, Starlyt renders a language disclosure
+from Jigyll's `page.all_translations` collection. Its order follows the locale
+order in `_config.yml`. The current edition is identified rather than linked,
+and locales without an edition are absent.
+
+Each link uses the translated edition's canonical URL. Switching languages
+therefore drops the current query string and fragment instead of guessing that
+another edition has an equivalent route or heading ID. The disclosure and its
+ordinary anchors remain operable when JavaScript is disabled.
+
 ## Localize navigation
 
 Keep one `site.navigation` tree. Use `label_key` for translated entries and

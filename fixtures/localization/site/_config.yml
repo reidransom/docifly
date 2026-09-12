@@ -23,10 +23,10 @@ localization:
       weight: 1
     fr:
       tag: fr
-      label: Français
+      label: Français — documentation détaillée
       weight: 2
     ar:
       tag: ar
-      label: العربية
+      label: العربية — وثائق تفصيلية طويلة
       direction: rtl
       weight: 3

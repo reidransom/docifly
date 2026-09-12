@@ -80,7 +80,7 @@ def check_inventory() -> None:
     )
     used = set(re.findall(r"key=['\"](starlyt(?:\.[a-z][a-z0-9_]*)+)['\"]", sources))
     assert used <= expected, f"unlisted message keys: {sorted(used - expected)}"
-    assert expected - used <= {"starlyt.language"}, f"unused message keys: {sorted(expected - used)}"
+    assert expected == used, f"unused message keys: {sorted(expected - used)}"
     catalogs = {
         locale: catalog_messages(FIXTURE / f"_data/locales/{locale}/messages.yml")
         for locale in ("en", "fr", "ar")
@@ -139,6 +139,8 @@ def check_localized_build(jigyll: Path, temporary: Path) -> None:
     french = (root / "fr/accueil/index.html").read_text(encoding="utf-8")
     arabic = (root / "ar/dalil/index.html").read_text(encoding="utf-8")
     prefixed = (prefix / "fr/demarrage/index.html").read_text(encoding="utf-8")
+    optional = (root / "optional/index.html").read_text(encoding="utf-8")
+    solo = (root / "ar/solo/index.html").read_text(encoding="utf-8")
 
     assert '<html lang="fr" dir="ltr"' in french
     assert '<html lang="ar" dir="rtl"' in arabic
@@ -155,11 +157,23 @@ def check_localized_build(jigyll: Path, temporary: Path) -> None:
     assert 'src="/docs/assets/search.js"' in prefixed
     assert 'https://example.test/docs/fr/demarrage/' in prefixed
     assert not (root / "ar/facultatif/index.html").exists()
+    french_picker = re.search(r'<details id="language-picker">(.*?)</details>', french, re.DOTALL)
+    optional_picker = re.search(r'<details id="language-picker">(.*?)</details>', optional, re.DOTALL)
+    prefix_picker = re.search(r'<details id="language-picker">(.*?)</details>', prefixed, re.DOTALL)
+    assert french_picker and optional_picker and prefix_picker
+    assert "Français — documentation détaillée" in french_picker.group(1)
+    assert 'aria-current="page"' in french_picker.group(1)
+    assert set(re.findall(r'href="([^"]+)"', french_picker.group(1))) == {"/", "/ar/al-bidaya/"}
+    assert set(re.findall(r'href="([^"]+)"', optional_picker.group(1))) == {"/fr/facultatif/"}
+    assert "العربية — وثائق تفصيلية طويلة" not in optional_picker.group(1)
+    assert set(re.findall(r'href="([^"]+)"', prefix_picker.group(1))) == {"/docs/guide/", "/docs/ar/dalil/"}
+    assert not re.search(r'href="[^"]*[?#]', french_picker.group(1) + optional_picker.group(1) + prefix_picker.group(1))
+    assert 'id="language-picker"' not in solo
 
     french_titles = {item["title"] for item in corpus(french)["documents"]}
     arabic_titles = {item["title"] for item in corpus(arabic)["documents"]}
     assert french_titles == {"Accueil français", "Guide français", "Page française facultative"}
-    assert arabic_titles == {"البداية العربية", "الدليل العربي"}
+    assert arabic_titles == {"البداية العربية", "الدليل العربي", "صفحة عربية منفردة"}
 
 
 def check_nonlocalized_build(jigyll: Path, temporary: Path) -> None:
@@ -179,6 +193,7 @@ def check_nonlocalized_build(jigyll: Path, temporary: Path) -> None:
     assert ">Skip to content</a>" in page
     assert 'aria-label="Search"' in page
     assert (output / "assets/search-data.json").exists()
+    assert 'id="language-picker"' not in page
 
 
 def scenario(jigyll: Path, temporary: Path, name: str, mutate) -> subprocess.CompletedProcess[str]:
