@@ -22,7 +22,7 @@
       <h1 id="page-title">{{ hero_title | escape }}</h1>
       {% if hero.tagline %}{% assign tagline = hero.tagline | strip %}{% if tagline != '' %}<p class="hero-tagline">{{ hero.tagline | escape }}</p>{% endif %}{% endif %}
     </div>
-    {% capture hero_actions %}{% for action in hero.actions %}{% include private/action-link.html action=action %}{% endfor %}{% endcapture %}
+    {% capture hero_actions %}{% for action in hero.actions %}{% include components/link-button.html text=action.text href=action.link variant=action.variant %}{% endfor %}{% endcapture %}
     {% assign hero_actions = hero_actions | strip %}
     {% if hero_actions != '' %}<div class="hero-actions">{{ hero_actions }}</div>{% endif %}
   </div>

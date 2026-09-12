@@ -74,37 +74,6 @@
     gap: 1rem 2rem;
   }
 
-  .sl-link-button {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid transparent;
-    border-radius: 999rem;
-    padding: 0.4375rem 1.125rem;
-    font-size: var(--sl-text-sm);
-    line-height: 1.1875;
-    text-decoration: none;
-    outline-offset: 0.25rem;
-  }
-
-  .sl-link-button.primary {
-    color: var(--sl-color-black);
-    background: var(--sl-color-text-accent);
-    border-color: var(--sl-color-text-accent);
-  }
-
-  .sl-link-button.primary:hover {
-    color: var(--sl-color-black);
-  }
-
-  .sl-link-button.secondary {
-    color: var(--sl-color-white);
-    border-color: currentColor;
-  }
-
-  .sl-link-button.minimal {
-    padding-inline: 0;
-    color: var(--sl-color-white);
-  }
 
   @media (min-width: 50rem) {
     .hero {
@@ -131,9 +100,5 @@
       justify-content: flex-start;
     }
 
-    .sl-link-button {
-      padding: 0.9375rem 1.25rem;
-      font-size: var(--sl-text-base);
-    }
   }
 }

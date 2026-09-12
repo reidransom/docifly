@@ -37,6 +37,8 @@ navigation:
         link: /icons/
       - label: Callouts
         link: /callouts/
+      - label: Link buttons
+        link: /link-buttons/
       - label: Headings and table of contents
         link: /headings/
       - label: Reference

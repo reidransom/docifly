@@ -23,9 +23,9 @@
                 {% if page.not_found.message %}{% assign message = page.not_found.message | strip %}{% if message != '' %}<p class="hero-tagline">{{ page.not_found.message | escape }}</p>{% endif %}{% endif %}
               </div>
               {% if page.not_found.links == nil %}
-                <div class="hero-actions"><a class="sl-link-button primary" href="{{ '/' | relative_url | escape }}">Back to home</a></div>
+                <div class="hero-actions">{% include components/link-button.html text="Back to home" href="/" %}</div>
               {% else %}
-                {% capture recovery_links %}{% for action in page.not_found.links %}{% include private/action-link.html action=action %}{% endfor %}{% endcapture %}
+                {% capture recovery_links %}{% for action in page.not_found.links %}{% include components/link-button.html text=action.text href=action.link variant=action.variant %}{% endfor %}{% endcapture %}
                 {% assign recovery_links = recovery_links | strip %}
                 {% if recovery_links != '' %}<div class="hero-actions">{{ recovery_links }}</div>{% endif %}
               {% endif %}
