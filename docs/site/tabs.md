@@ -18,8 +18,8 @@ jigyll build --source my-docs
 ```
 {% endcapture %}
 {% capture independent_tabs %}
-{% include components/tab.html label="Overview" content=overview_panel %}
-{% include components/tab.html label="A deliberately long tab label that scrolls within a narrow tab list" content=code_panel %}
+{% include components/tab.html label="Overview" icon="open-book" content=overview_panel %}
+{% include components/tab.html label="A deliberately long tab label that scrolls within a narrow tab list" icon="not-in-the-frozen-registry" content=code_panel %}
 {% endcapture %}
 {% include components/tabs.html content=independent_tabs %}
 
@@ -33,13 +33,13 @@ Rich **Markdown** with [a link](/getting-started/).
 A second panel.
 {% endcapture %}
 {% capture items %}
-{% include components/tab.html label="First" content=first_panel %}
+{% include components/tab.html label="First" icon="open-book" content=first_panel %}
 {% include components/tab.html label="Second" content=second_panel %}
 {% endcapture %}
 {% include components/tabs.html content=items %}{% endraw %}
 ```
 
-Labels are required escaped plain text. Panel content follows the consumer's trusted Markdown/raw-HTML policy. Labels inside one group must be unique. Nested tab groups are unsupported.
+Labels are required escaped plain text. `icon` optionally accepts a frozen public icon name; unknown names omit the SVG. Panel content follows the consumer's trusted Markdown/raw-HTML policy. Labels inside one group must be unique. Nested tab groups are unsupported.
 
 ## Synchronized and persistent groups
 

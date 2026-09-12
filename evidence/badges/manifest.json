@@ -14,7 +14,7 @@
     ]
   },
   "implementation": {
-    "url": "http://127.0.0.1:4318/badges/",
+    "url": "http://127.0.0.1:4323/badges/",
     "viewports": [390, 800, 1440],
     "modes": ["light", "dark"],
     "captures": [
@@ -39,6 +39,15 @@
   },
   "behavior": {
     "variants": ["default", "note", "tip", "caution", "danger", "success"],
+    "variant_icons": {
+      "default": "star",
+      "note": "information",
+      "tip": "rocket",
+      "caution": "warning",
+      "danger": "error",
+      "success": "approve-check-circle"
+    },
+    "variant_icons_decorative": true,
     "sizes": ["small", "medium", "large"],
     "markup_like_text_is_literal": true,
     "invalid_values_fall_back_to_default_medium": true,

@@ -9,6 +9,8 @@ Badges are escaped, noninteractive plain-text labels. Their text and shape remai
 
 {% include components/badge.html text="Default" variant="default" size="medium" %} {% include components/badge.html text="Note" variant="note" size="medium" %} {% include components/badge.html text="Tip" variant="tip" size="medium" %} {% include components/badge.html text="Caution" variant="caution" size="medium" %} {% include components/badge.html text="Danger" variant="danger" size="medium" %} {% include components/badge.html text="Success" variant="success" size="medium" %}
 
+Each variant uses a fixed decorative icon from the frozen public registry: `star`, `information`, `rocket`, `warning`, `error`, or `approve-check-circle`. The escaped text and badge shape still carry the label when icons or color are unavailable.
+
 Use the include directly in prose. `text` is escaped plain text; raw HTML and Markdown are not accepted:
 
 ```liquid

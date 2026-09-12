@@ -36,7 +36,11 @@
       "tabs-selected-overflow-390-light.png",
       "tabs-selected-overflow-390-dark.png",
       "tabs-yarn-rich-390-light.png",
-      "tabs-yarn-rich-390-dark.png"
+      "tabs-yarn-rich-390-dark.png",
+      "tabs-icon-390-light.png",
+      "tabs-icon-1440-light.png",
+      "tabs-icon-390-dark.png",
+      "tabs-icon-1440-dark.png"
     ]
   },
   "geometry": {
@@ -69,7 +73,12 @@
     "narrow_tablist_scroll_width": 591,
     "narrow_tablist_client_width": 358,
     "page_wide_overflow": false,
-    "unequal_height_sync_source_visual_delta_px": 0
+    "unequal_height_sync_source_visual_delta_px": 0,
+    "icon_integration_url": "http://127.0.0.1:4323/tabs/",
+    "valid_icon_cloned_into_enhanced_tab": true,
+    "unknown_icon_svg_count": 0,
+    "icon_does_not_change_tab_accessible_name": true,
+    "no_javascript_icon_and_heading_visible": true
   },
   "runner": {
     "tool": "playwright-mcp",

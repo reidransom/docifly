@@ -11,7 +11,8 @@
     "states": [
       "link-card-hover-{390,1440}-{light,dark}.png",
       "link-card-focus-{390,1440}-{light,dark}.png",
-      "link-card-focus-context-390-{light,dark}.png"
+      "link-card-focus-context-390-{light,dark}.png",
+      "card-icon-{390,1440}-{light,dark}.png"
     ]
   },
   "environment": {
@@ -38,7 +39,13 @@
     "keyboardFocusOutline": true,
     "ordinaryCardsAddNoTabStop": true
   },
-  "pending": "Ticket 11 owns the frozen public icon registry. Card icon rendering and the with-icon fixture remain pending until that registry lands.",
+  "iconIntegration": {
+    "url": "http://127.0.0.1:4323/cards/",
+    "validCardIcon": "rocket",
+    "unknownCardIconSvgCount": 0,
+    "decorativeIconAccessibilityTree": false,
+    "screenshots": "card-icon-{390,1440}-{light,dark}.png"
+  },
   "acceptedDifferences": [
     "Jigyll cards use captured Markdown and Liquid includes rather than Astro slots.",
     "LinkCard is one wrapping anchor instead of a child anchor with a stretched pseudo-element; observable navigation semantics remain one target.",

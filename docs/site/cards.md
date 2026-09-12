@@ -29,8 +29,8 @@ Short content makes unequal card lengths visible without forcing filler copy.
 This deliberately long body demonstrates natural wrapping across several lines. Cards keep their content readable when neighboring cards contain different amounts of material.
 {% endcapture %}
 {% capture standard_cards %}
-{% include components/card.html title="Rich Markdown body" content=card_intro %}
-{% include components/card.html title="A deliberately long card title that wraps safely" content=card_code %}
+{% include components/card.html title="Rich Markdown body" icon="rocket" content=card_intro %}
+{% include components/card.html title="A deliberately long card title that wraps safely" icon="not-in-the-frozen-registry" content=card_code %}
 {% include components/card.html title="Short card" content=card_short %}
 {% include components/card.html title="Unequal body length" content=card_long %}
 {% endcapture %}
@@ -43,12 +43,12 @@ The exact authoring shape is:
 Markdown with **formatting**, lists, links, and code.
 {% endcapture %}
 {% capture cards %}
-{% include components/card.html title="Escaped plain-text title" content=body %}
+{% include components/card.html title="Escaped plain-text title" icon="rocket" content=body %}
 {% endcapture %}
 {% include components/card-grid.html content=cards stagger=false %}{% endraw %}
 ```
 
-`title` is required escaped plain text. `content` is passed through `markdownify` and therefore follows the consumer's trusted Markdown/raw-HTML policy. Cards add no navigation target of their own. A card inside a link card and nested card grids are unsupported.
+`title` is required escaped plain text. `icon` optionally accepts a frozen public icon name; unknown names omit the SVG. `content` is passed through `markdownify` and therefore follows the consumer's trusted Markdown/raw-HTML policy. Cards add no navigation target of their own. A card inside a link card and nested card grids are unsupported.
 
 ## Staggered grid
 

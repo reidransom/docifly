@@ -33,6 +33,8 @@ navigation:
         link: /steps/
       - label: File trees
         link: /file-trees/
+      - label: Icons
+        link: /icons/
       - label: Headings and table of contents
         link: /headings/
       - label: Reference

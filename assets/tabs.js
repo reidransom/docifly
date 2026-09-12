@@ -23,7 +23,9 @@
       element,
       groupIndex,
       items,
-      labels: items.map((item) => item.querySelector(':scope > .tab-item-label')?.textContent || ''),
+      labels: items.map(
+        (item) => item.querySelector(':scope > .tab-item-label > .tab-label-text')?.textContent || '',
+      ),
       sync,
       persist: element.hasAttribute('data-tabs-persist') && Boolean(sync),
       tabs: [],
@@ -105,7 +107,7 @@
       tab.type = 'button';
       tab.className = 'tab';
       tab.id = tabId;
-      tab.textContent = group.labels[itemIndex];
+      tab.append(...Array.from(heading.childNodes, (node) => node.cloneNode(true)));
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-controls', panelId);
       panel.id = panelId;
