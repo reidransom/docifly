@@ -1,6 +1,7 @@
 (() => {
   const groupElements = Array.from(document.querySelectorAll('[data-tabs]'));
   if (!groupElements.length) return;
+  const rtl = document.documentElement.dir === 'rtl';
 
   const focusableSelector = [
     'a[href]',
@@ -127,8 +128,10 @@
       tab.addEventListener('keydown', (event) => {
         const index = group.tabs.indexOf(tab);
         let nextIndex;
-        if (event.key === 'ArrowLeft') nextIndex = (index - 1 + group.tabs.length) % group.tabs.length;
-        else if (event.key === 'ArrowRight') nextIndex = (index + 1) % group.tabs.length;
+        if (event.key === 'ArrowLeft')
+          nextIndex = (index + (rtl ? 1 : -1) + group.tabs.length) % group.tabs.length;
+        else if (event.key === 'ArrowRight')
+          nextIndex = (index + (rtl ? -1 : 1) + group.tabs.length) % group.tabs.length;
         else if (event.key === 'Home') nextIndex = 0;
         else if (event.key === 'End') nextIndex = group.tabs.length - 1;
         else return;

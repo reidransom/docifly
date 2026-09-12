@@ -39,6 +39,11 @@
     vertical-align: -0.125em;
   }
 
+  html[dir='rtl']
+    .sl-icon:is([data-icon='left-arrow'], [data-icon='left-caret'], [data-icon='right-arrow'], [data-icon='right-caret']) {
+    transform: scaleX(-1);
+  }
+
   .sl-icon.small {
     font-size: 0.875rem;
   }
@@ -422,6 +427,11 @@
     fill: currentColor;
   }
 
+  .file-tree .entry-name {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
   @media (min-width: 30em) {
     .file-tree .tree-entry {
       flex-wrap: nowrap;
@@ -601,6 +611,12 @@
 
   .tabs.is-enhanced > .tab-item {
     margin-top: 0;
+  }
+
+  .tab-panel code {
+    direction: ltr;
+    white-space: nowrap;
+    unicode-bidi: isolate;
   }
 
   .tabs.is-enhanced .tab-panel {

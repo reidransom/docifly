@@ -139,6 +139,7 @@ def check_localized_build(jigyll: Path, temporary: Path) -> None:
     french = (root / "fr/accueil/index.html").read_text(encoding="utf-8")
     arabic = (root / "ar/dalil/index.html").read_text(encoding="utf-8")
     prefixed = (prefix / "fr/demarrage/index.html").read_text(encoding="utf-8")
+    prefixed_arabic = (prefix / "ar/dalil/index.html").read_text(encoding="utf-8")
     optional = (root / "optional/index.html").read_text(encoding="utf-8")
     solo = (root / "ar/solo/index.html").read_text(encoding="utf-8")
 
@@ -149,6 +150,12 @@ def check_localized_build(jigyll: Path, temporary: Path) -> None:
     assert '>Choisir le thème<' in french
     assert 'data-copy-label="Copier dans le presse-papiers"' in french
     assert '>خطر</span>' in arabic
+    assert 'id="search-input" type="search" dir="auto"' in arabic
+    assert '<table>' in arabic
+    assert 'src="/assets/rtl-layout.svg"' in arabic
+    assert 'data-tabs' in arabic
+    assert 'class="file-tree not-content"' in arabic
+    assert "abcdefghijklmnopqrstuvwxyz-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ" in arabic
     assert 'href="/fr/accueil/" aria-current="page"' in french
     assert 'href="/fr/demarrage/"' in french
     assert 'rel="canonical" href="https://example.test/fr/accueil/"' in french
@@ -156,6 +163,7 @@ def check_localized_build(jigyll: Path, temporary: Path) -> None:
     assert 'href="/docs/fr/accueil/"' in prefixed
     assert 'src="/docs/assets/search.js"' in prefixed
     assert 'https://example.test/docs/fr/demarrage/' in prefixed
+    assert 'src="/docs/assets/rtl-layout.svg"' in prefixed_arabic
     assert not (root / "ar/facultatif/index.html").exists()
     french_picker = re.search(r'<details id="language-picker">(.*?)</details>', french, re.DOTALL)
     optional_picker = re.search(r'<details id="language-picker">(.*?)</details>', optional, re.DOTALL)

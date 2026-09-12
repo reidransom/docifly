@@ -257,7 +257,7 @@
   }
   #article .copy-button {
     position: absolute;
-    right: calc(0.5rem + 1px);
+    inset-inline-end: calc(0.5rem + 1px);
     top: calc(0.4rem + 1px);
     width: var(--copy-size);
     height: var(--copy-size);
@@ -297,7 +297,7 @@
   #article .copy-feedback {
     --feedback-bg: var(--code-success);
     position: absolute;
-    right: calc(0.5rem + 1px + var(--copy-size) + 0.6rem);
+    inset-inline-end: calc(0.5rem + 1px + var(--copy-size) + 0.6rem);
     top: calc(0.4rem + 1px);
     padding: 0.125rem 0.75rem;
     font: 0.9rem / 1.65 var(--__sl-font);
@@ -311,9 +311,9 @@
     content: '';
     position: absolute;
     top: calc(50% - 0.35rem);
-    right: calc(-2 * (0.35rem - 0.5px));
+    inset-inline-end: calc(-2 * (0.35rem - 0.5px));
     border: 0.35rem solid transparent;
-    border-left-color: var(--feedback-bg);
+    border-inline-start-color: var(--feedback-bg);
   }
   #article .copy-feedback[data-error] {
     --feedback-bg: var(--sl-color-red-low);

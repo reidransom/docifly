@@ -62,7 +62,7 @@
     padding: 1rem;
   }
   #search-close {
-    float: right;
+    float: inline-end;
     border: 0;
     padding: 0.5rem;
     background: transparent;
@@ -79,6 +79,7 @@
     background: var(--sl-color-black);
     color: var(--sl-color-white);
     font: inherit;
+    unicode-bidi: plaintext;
   }
   #search-input:focus-visible {
     border-color: var(--sl-color-accent);

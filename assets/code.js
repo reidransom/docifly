@@ -1,10 +1,15 @@
 (() => {
-  if (!navigator.clipboard?.writeText) return;
   const messages = document.documentElement.dataset;
-  if (!messages.copyLabel || !messages.copySuccess || !messages.copyFailure) return;
+  const canCopy =
+    navigator.clipboard?.writeText
+    && messages.copyLabel
+    && messages.copySuccess
+    && messages.copyFailure;
   document.querySelectorAll('#article pre').forEach((pre) => {
     const code = pre.querySelector('code');
-    if (!code || pre.closest('.code-frame')) return;
+    if (!code) return;
+    if (pre instanceof HTMLElement) pre.dir = 'ltr';
+    if (!canCopy || pre.closest('.code-frame')) return;
     const semanticFrame = pre.closest('figure.highlight[data-code-frame]');
     const frame = semanticFrame
       || (pre.parentElement.classList.contains('highlight') ? pre.parentElement : document.createElement('div'));

@@ -74,11 +74,14 @@
     color: var(--sl-color-text-invert);
     background: var(--sl-color-text-accent);
   }
+  html[dir='rtl'] details:not([open]) > summary .caret {
+    transform: rotate(180deg);
+  }
   #menu-toggle {
     position: fixed;
     z-index: 10;
     top: calc((var(--sl-nav-height) - 2rem) / 2);
-    right: var(--sl-nav-pad-x);
+    inset-inline-end: var(--sl-nav-pad-x);
     border: 0;
     border-radius: 50%;
     width: 2rem;
@@ -125,7 +128,7 @@
       display: block;
       width: var(--sl-sidebar-width);
       inset-inline-end: auto;
-      border-right: 1px solid var(--sl-color-hairline-shade);
+      border-inline-end: 1px solid var(--sl-color-hairline-shade);
       background: var(--sl-color-bg-sidebar);
     }
     #site-nav > ul > li + li {

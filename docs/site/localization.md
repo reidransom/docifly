@@ -52,6 +52,20 @@ therefore drops the current query string and fragment instead of guessing that
 another edition has an equivalent route or heading ID. The disclosure and its
 ordinary anchors remain operable when JavaScript is disabled.
 
+## Author right-to-left content
+
+Locales with `direction: rtl` mirror the shell while retaining source and focus
+order. Starlyt keeps fenced code, inline code, file names, and search input
+isolated in their natural direction. Wide code and tables scroll within their
+own containers; images, brand marks, search, external-link, and copy icons are
+not mirrored. Only left/right arrow and caret icons reverse.
+
+Use semantic HTML when a mixed-script run needs an explicit direction. A
+literal URL inside Arabic prose can use `<bdi dir="ltr">https://example.test</bdi>`.
+The retained Arabic fixture exercises the supported layout and content
+features. It establishes Arabic acceptance, not blanket support for every RTL
+language.
+
 ## Localize navigation
 
 Keep one `site.navigation` tree. Use `label_key` for translated entries and
