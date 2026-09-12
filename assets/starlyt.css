@@ -1766,6 +1766,63 @@ how we do it.
   .tab-panel > :first-child {
     margin-top: 0;
   }
+  .starlight-aside {
+    min-width: 0;
+    padding: 1rem;
+    overflow-wrap: anywhere;
+    color: var(--sl-color-white);
+    background-color: var(--sl-color-blue-low);
+    border-inline-start: 0.25rem solid var(--sl-color-blue);
+  }
+  .starlight-aside--note {
+    --sl-color-asides-text-accent: var(--sl-color-blue-high);
+    background-color: var(--sl-color-blue-low);
+    border-color: var(--sl-color-blue);
+  }
+  .starlight-aside--tip {
+    --sl-color-asides-text-accent: var(--sl-color-purple-high);
+    background-color: var(--sl-color-purple-low);
+    border-color: var(--sl-color-purple);
+  }
+  .starlight-aside--caution {
+    --sl-color-asides-text-accent: var(--sl-color-orange-high);
+    background-color: var(--sl-color-orange-low);
+    border-color: var(--sl-color-orange);
+  }
+  .starlight-aside--danger {
+    --sl-color-asides-text-accent: var(--sl-color-red-high);
+    background-color: var(--sl-color-red-low);
+    border-color: var(--sl-color-red);
+  }
+  .starlight-aside__title {
+    display: flex;
+    min-width: 0;
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--sl-color-asides-text-accent);
+    font-size: var(--sl-text-h5);
+    font-weight: 600;
+    line-height: var(--sl-line-height-headings);
+  }
+  .starlight-aside__title .sl-icon {
+    font-size: 1.333em;
+  }
+  .starlight-aside__title > span,
+  .starlight-aside__content {
+    min-width: 0;
+  }
+  .starlight-aside__title + .starlight-aside__content {
+    margin-top: 0.5rem;
+  }
+  .starlight-aside__content > :first-child {
+    margin-top: 0;
+  }
+  .starlight-aside__content > :last-child {
+    margin-bottom: 0;
+  }
+  .starlight-aside__content a {
+    color: var(--sl-color-asides-text-accent);
+  }
   @media (min-width: 50rem) {
     .card-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));

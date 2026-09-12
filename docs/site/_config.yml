@@ -35,6 +35,8 @@ navigation:
         link: /file-trees/
       - label: Icons
         link: /icons/
+      - label: Callouts
+        link: /callouts/
       - label: Headings and table of contents
         link: /headings/
       - label: Reference
