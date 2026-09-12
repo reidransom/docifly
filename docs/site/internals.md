@@ -26,7 +26,7 @@ That makes the ordinary installed site the useful manual exercise surface. A dir
 
 The page type and hero are independent. A default page without `hero` gets one ordinary H1; either layout with `hero` gets one hero H1 instead. Splash and not-found pages retain the fixed header while omitting navigation, the mobile menu, and both sidebars. The not-found route remains consumer-owned because a theme cannot configure the host's missing-route behavior.
 
-Public content includes live under `_includes/components/`. `badge.html` validates escaped text variants and sizes; a badge placed on the source line after a heading is styled beside it without entering the heading's ID or navigation label. `steps.html` decorates only a rendered outer ordered list, retaining its native `start` value and leaving nested lists or malformed input ordinary. Rich-card bodies are captured Markdown; `card-grid.html` receives already rendered component HTML and never Markdownifies it again. Link cards remain one native anchor rather than turning the whole card into a scripted control.
+Public content includes live under `_includes/components/`. `badge.html` validates escaped text variants and sizes; a badge placed on the source line after a heading is styled beside it without entering the heading's ID or navigation label. `steps.html` decorates only a rendered outer ordered list, retaining its native `start` value and leaving nested lists or malformed input ordinary. `file-tree.html` recursively renders escaped structured data through a private include, bounds traversal at eight directory levels, and uses native disclosure controls. Its frozen file-type registry is an internal asset rather than part of the public icon-name contract. Rich-card bodies are captured Markdown; `card-grid.html` receives already rendered component HTML and never Markdownifies it again. Link cards remain one native anchor rather than turning the whole card into a scripted control.
 
 Text labels and titles are escaped. A navigation badge contributes to its link name unless an equivalent `aria_label` supplies that name and hides redundant visible text from assistive technology. Theme asset URLs and navigation links pass through `relative_url` and attribute escaping. Page URLs and navigation links must agree for the current-page marker to appear.
 
@@ -78,7 +78,7 @@ Session persistence stores group state and scroll position under a base-URL-spec
 
 ### Search
 
-`assets/js/zzzz-search-data.json` is a front-matter-bearing theme asset whose `search-data` layout runs after Jigyll renders all page bodies. It emits deterministic same-origin records for published default-layout HTML pages and output-enabled collection documents. Each record contains the title, base-URL-correct URL, article text, and Jigyll heading metadata; `search_exclude: true` omits a document.
+`assets/js/zzzz-search-data.json` is a front-matter-bearing theme asset whose `search-data` layout runs after Jigyll renders all page bodies. It emits deterministic same-origin records for published default-layout HTML pages and output-enabled collection documents. Each record contains the title, base-URL-correct URL, article text, and Jigyll heading metadata; `search_exclude: true` omits a document. Component regions marked with `data-search-exclude` are delimited by private build-time markers and removed from the article body before text normalization, so illustrative file-tree labels do not enter the corpus.
 
 `assets/flexsearch-0.8.212.min.js` is the pinned Apache-2.0 FlexSearch browser bundle; its license is retained in `assets/flexsearch-LICENSE`. `assets/search.js` normalizes case and canonical Unicode form, requires every token, and allows a prefix only on the final token. It verifies exact matches itself after FlexSearch finds candidates, ranks title/heading/body hits deterministically, and uses text-only DOM APIs for corpus values. The disabled control remains unavailable without JavaScript; the native dialog supplies loading, guidance, results, failure, and retry states.
 
@@ -92,6 +92,6 @@ When changing theme behavior, update the explanation and its real example togeth
 
 ## Attribution and historical scope
 
-Stock Starlight and Expressive Code attribution remains in the shipped license assets. The frozen stock Starlight POC revision was `39d4e71f23b3fb6fde0e77eb983fcd38629b70b9`; historical findings and code-token limitations are recorded in the repository's `docs/poc.md` and `evidence/poc/`.
+Stock Starlight and Expressive Code attribution remains in the shipped license assets. The frozen Seti file-icon inventory used by file trees retains its notice in `assets/file-tree-icons-LICENSE`. The frozen stock Starlight POC revision was `39d4e71f23b3fb6fde0e77eb983fcd38629b70b9`; historical findings and code-token limitations are recorded in the repository's `docs/poc.md` and `evidence/poc/`.
 
 The Node.js POC tooling was removed without replacement. Those historical results are not a current automated gate or proof of complete visual parity, interaction parity, or Astro compatibility.

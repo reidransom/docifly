@@ -3,7 +3,8 @@
 {%- for page in site.html_pages -%}
   {%- if page.layout == 'default' and page.search_exclude != true -%}
     {%- unless count == 0 -%},{%- endunless -%}
-    {"title":{{ page.title | default: '' | jsonify }},"url":{{ page.url | relative_url | jsonify }},"body":{{ page.content | strip_html | normalize_whitespace | jsonify }},"headings":{{ page.headings | jsonify }}}
+    {%- capture search_body -%}{%- include private/searchable-content.html content=page.content -%}{%- endcapture -%}
+    {"title":{{ page.title | default: '' | jsonify }},"url":{{ page.url | relative_url | jsonify }},"body":{{ search_body | strip_html | normalize_whitespace | jsonify }},"headings":{{ page.headings | jsonify }}}
     {%- assign count = count | plus: 1 -%}
   {%- endif -%}
 {%- endfor -%}
@@ -12,7 +13,8 @@
     {%- for page in collection.docs -%}
       {%- if page.layout == 'default' and page.search_exclude != true -%}
         {%- unless count == 0 -%},{%- endunless -%}
-        {"title":{{ page.title | default: '' | jsonify }},"url":{{ page.url | relative_url | jsonify }},"body":{{ page.content | strip_html | normalize_whitespace | jsonify }},"headings":{{ page.headings | jsonify }}}
+        {%- capture search_body -%}{%- include private/searchable-content.html content=page.content -%}{%- endcapture -%}
+        {"title":{{ page.title | default: '' | jsonify }},"url":{{ page.url | relative_url | jsonify }},"body":{{ search_body | strip_html | normalize_whitespace | jsonify }},"headings":{{ page.headings | jsonify }}}
         {%- assign count = count | plus: 1 -%}
       {%- endif -%}
     {%- endfor -%}

@@ -43,3 +43,7 @@ Start at the overview, then follow the guides for configuration, navigation, hea
 The documentation is a separate consumer: running `jigyll build` at the repository root is not the documentation build. The former root welcome scaffold has been replaced by the documentation overview.
 
 See [the documentation source](docs/site/index.md) and [historical POC notes](docs/poc.md). The POC evidence is retained as history, not as a claim that the current site has complete visual parity or interaction parity with stock Starlight.
+
+## Attribution
+
+The theme retains upstream notices beside shipped third-party assets. Stock Starlight attribution is in `assets/starlight-LICENSE`, FlexSearch attribution is in `assets/flexsearch-LICENSE`, and the frozen Seti file-icon inventory is covered by `assets/file-tree-icons-LICENSE`.

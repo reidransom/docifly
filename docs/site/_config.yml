@@ -31,6 +31,8 @@ navigation:
           size: large
       - label: Steps
         link: /steps/
+      - label: File trees
+        link: /file-trees/
       - label: Headings and table of contents
         link: /headings/
       - label: Reference
