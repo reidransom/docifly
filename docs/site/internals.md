@@ -83,6 +83,16 @@ Jigyll parses fenced-code metadata and emits the semantic `figure.highlight[data
 
 Highlighting and fenced-code metadata parsing are server-side Jigyll/Chroma behavior. Differences from stock Starlight's code highlighter cannot be repaired by inventing tokens in CSS or the copy handler.
 
+### Print
+
+`_sass/_print.scss` removes fixed and interactive chrome, forces the light
+print palette, expands tab and disclosure content, wraps code and table cells,
+and appends destinations only to HTTP(S) article links. Layouts render one
+screen-hidden canonical URL that the print stylesheet reveals after the
+article. Browser paper size, 12 mm margins, scale, headers/footers, and
+background-graphics behavior remain print-dialog or automation settings rather
+than theme configuration.
+
 ## Fallback and change discipline
 
 Without JavaScript, the default dark palette, content, links, images, native navigation, server-rendered TOC, server-highlighted code, and every tab panel remain readable. Anchor controls, active-section feedback, responsive TOC disclosure behavior, code copying, tab selection/synchronization, and mode selection are enhancements. Browser support for native popovers is still relevant to the mobile fallback.

@@ -25,7 +25,7 @@
         {% else %}
           <div class="content-panel"><div class="content-container"><h1 id="page-title">{{ page.title | escape }}</h1></div></div>
         {% endif %}
-        <div class="content-panel"><div class="content-container"><article id="article" class="sl-markdown-content">{{ content }}</article></div></div>
+        <div class="content-panel"><div class="content-container"><article id="article" class="sl-markdown-content">{{ content }}</article>{% include private/print-canonical.html %}</div></div>
       </main>
     </div>
   </body>

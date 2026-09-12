@@ -159,6 +159,8 @@ def check_localized_build(jigyll: Path, temporary: Path) -> None:
     assert 'href="/fr/accueil/" aria-current="page"' in french
     assert 'href="/fr/demarrage/"' in french
     assert 'rel="canonical" href="https://example.test/fr/accueil/"' in french
+    assert french.count('<p class="print-canonical">https://example.test/fr/accueil/</p>') == 1
+    assert prefixed.count('<p class="print-canonical">https://example.test/docs/fr/demarrage/</p>') == 1
     assert 'hreflang="x-default" href="https://example.test/"' in french
     assert 'href="/docs/fr/accueil/"' in prefixed
     assert 'src="/docs/assets/search.js"' in prefixed
