@@ -79,6 +79,56 @@ Errors include an unquoted or empty title, an unsupported escape, duplicate
 `title` or `frame` tokens, an unterminated value, an unsupported frame name,
 and combining a title with `frame="none"`.
 
+## Mark lines and text
+
+Markers annotate authored source without changing it. A bare line selector is
+neutral; `ins` and `del` identify inserted and deleted lines. Selectors are
+1-based, inclusive, and accept comma-separated numbers and ranges:
+
+```javascript {1,2} ins={2-3,4} del={5}
+const stable = true;
+const added = "new";
+
+return added;
+const removed = "old";
+```
+
+The blank third line is intentionally inserted. The neutral and inserted
+selectors overlap on line 2, so insertion presentation wins. The adjacent
+insertion ranges render continuously.
+
+Double-quoted selectors mark every exact, case-sensitive text occurrence.
+Prefix them with `ins=` or `del=` for insertion and deletion meaning:
+
+```go "return value" ins="added" del="removed" ins="value()"
+added := "added"
+return value
+removed := "removed"
+call(value())
+```
+
+Text matching can cross Chroma token spans, including the keyword and name in
+`return value`, without changing their order or classes. Punctuation is literal,
+not a regular expression. Repeated text is marked at every occurrence.
+
+Marker text uses the same escapes as titles. Here the single selector marks
+both paths:
+
+```text "C:\\work"
+Copy C:\work, then compare C:\work.
+```
+
+Marked long lines remain local to their code scroller:
+
+```json ins={1}
+{"marker":"inserted","workflow":["author the exact source","select a semantic region","render Chroma tokens on the server","preserve every character for clipboard and ordinary selection","scroll this marked line without widening the page"]}
+```
+
+Zero, reversed, or out-of-range lines; empty selectors; missing text; malformed
+recognized values; and overlapping insertion/deletion selections fail the
+build with the source path and fence line. Neutral overlap is valid. Markers do
+not add `+`, `-`, labels, or any other characters to copied and selected code.
+
 ## Preserve whitespace
 
 Copy the following Python into a plain text editor. Indentation, the blank line, and the source's line breaks should remain intact:
