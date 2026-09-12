@@ -832,10 +832,13 @@ how we do it.
   #article pre:has(.code-line) {
     padding-inline: 0;
     --marker-neutral-bg: rgb(255 255 255 / 9%);
+    --marker-neutral-gutter: color-mix(in srgb, white 9%, var(--code-bg));
     --marker-neutral-edge: var(--sl-color-gray-3);
     --marker-insert-bg: rgb(30 87 21 / 60%);
+    --marker-insert-gutter: color-mix(in srgb, rgb(30 87 21) 60%, var(--code-bg));
     --marker-insert-edge: #58a64b;
     --marker-delete-bg: rgb(134 45 39 / 60%);
+    --marker-delete-gutter: color-mix(in srgb, rgb(134 45 39) 60%, var(--code-bg));
     --marker-delete-edge: #f85149;
     --marker-pattern: rgb(255 255 255 / 6%);
   }
@@ -847,6 +850,41 @@ how we do it.
     padding-inline: calc(0.90625rem - 2px) 3rem;
     border-inline-start: 3px solid transparent;
   }
+  #article code[data-line-number-width="1"] {
+    --line-number-width: 1ch;
+  }
+  #article code[data-line-number-width="2"] {
+    --line-number-width: 2ch;
+  }
+  #article code[data-line-number-width="3"] {
+    --line-number-width: 3ch;
+  }
+  #article code[data-line-number-width="4"] {
+    --line-number-width: 4ch;
+  }
+  #article code[data-line-number-width="5"] {
+    --line-number-width: 5ch;
+  }
+  #article code[data-line-number-width="6"] {
+    --line-number-width: 6ch;
+  }
+  #article .code-line[data-line-number]::before {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 1;
+    display: inline-block;
+    box-sizing: content-box;
+    width: var(--line-number-width);
+    margin-inline-end: 0.75rem;
+    padding-inline-end: 0.75rem;
+    border-inline-end: 1px solid var(--code-border);
+    color: var(--sl-color-gray-2);
+    background-color: var(--code-bg);
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+    user-select: none;
+    content: attr(data-line-number)/"";
+  }
   #article :is(.code-line, mark).is-marked {
     background-color: var(--marker-neutral-bg);
   }
@@ -856,6 +894,17 @@ how we do it.
   }
   #article :is(.code-line, mark).is-deleted {
     background-color: var(--marker-delete-bg);
+    background-image: repeating-linear-gradient(45deg, transparent 0 6px, var(--marker-pattern) 6px 8px);
+  }
+  #article .code-line.is-marked::before {
+    background-color: var(--marker-neutral-gutter);
+  }
+  #article .code-line.is-inserted::before {
+    background-color: var(--marker-insert-gutter);
+    background-image: repeating-linear-gradient(135deg, transparent 0 6px, var(--marker-pattern) 6px 8px);
+  }
+  #article .code-line.is-deleted::before {
+    background-color: var(--marker-delete-gutter);
     background-image: repeating-linear-gradient(45deg, transparent 0 6px, var(--marker-pattern) 6px 8px);
   }
   #article .code-line.is-marked {
@@ -875,10 +924,13 @@ how we do it.
   }
   [data-theme=light] #article pre:has(.code-line) {
     --marker-neutral-bg: rgb(0 0 0 / 10%);
+    --marker-neutral-gutter: color-mix(in srgb, black 10%, var(--code-bg));
     --marker-neutral-edge: var(--sl-color-gray-3);
     --marker-insert-bg: rgb(142 199 125 / 60%);
+    --marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 60%, var(--code-bg));
     --marker-insert-edge: #2da043;
     --marker-delete-bg: rgb(255 156 142 / 60%);
+    --marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 60%, var(--code-bg));
     --marker-delete-edge: #cf222e;
     --marker-pattern: rgb(255 255 255 / 10%);
   }

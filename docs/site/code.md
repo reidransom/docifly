@@ -120,7 +120,7 @@ Copy C:\work, then compare C:\work.
 
 Marked long lines remain local to their code scroller:
 
-```json ins={1}
+```json ins={1} showLineNumbers
 {"marker":"inserted","workflow":["author the exact source","select a semantic region","render Chroma tokens on the server","preserve every character for clipboard and ordinary selection","scroll this marked line without widening the page"]}
 ```
 
@@ -128,6 +128,37 @@ Zero, reversed, or out-of-range lines; empty selectors; missing text; malformed
 recognized values; and overlapping insertion/deletion selections fail the
 build with the source path and fence line. Neutral overlap is valid. Markers do
 not add `+`, `-`, labels, or any other characters to copied and selected code.
+
+## Show line numbers
+
+Add the bare `showLineNumbers` flag to start a gutter at 1. Blank lines receive
+one number, while the structural trailing newline does not create another:
+
+```text showLineNumbers
+first
+
+third
+```
+
+Use `startLineNumber=N` to start from a decimal value between 1 and 999999. It
+also enables numbering, so no second flag is required. This framed example
+demonstrates the 9-to-10 width transition together with every whole-line marker
+meaning:
+
+```bash title="deploy.sh" startLineNumber=8 {1} ins={2} del={3}
+printf 'stable\n'
+printf 'added\n'
+printf 'removed\n'
+```
+
+Numbers are CSS-generated from each line's `data-line-number`; they are not
+text inside `code`. Selecting or copying the block yields only the authored
+source, and horizontal scrolling keeps the numbered gutter aligned. Existing
+blocks without either numbering token remain unnumbered.
+
+`showLineNumbers` cannot take a value. Duplicate tokens, a missing or
+nondecimal start, and starts outside 1 through 999999 fail the build with the
+source path and fence line.
 
 ## Preserve whitespace
 
@@ -177,4 +208,6 @@ Try copying a block and pasting it into an editor. If your browser allows per-si
 
 Chroma's token boundaries and colors can differ from the highlighter used by stock Starlight. Readable highlighting is not proof of exact syntax-token visual parity. The theme does not replace Jigyll's renderer to recover token distinctions it never emitted.
 
-Line markers, line numbers, playgrounds, and Astro/MDX code APIs are not promised by this surface. Use ordinary fences and [documented Markdown](../markdown/) rather than assuming upstream component syntax works here.
+Playgrounds and Astro/MDX code APIs are not promised by this surface. Use the
+documented fenced-code metadata above and [documented Markdown](../markdown/)
+rather than assuming upstream component syntax works here.
