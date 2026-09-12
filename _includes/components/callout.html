@@ -4,16 +4,16 @@
 {% endunless %}
 {% case callout_type %}
   {% when 'tip' %}
-    {% assign callout_title_default = 'Tip' %}
+    {% capture callout_title_default %}{% include private/ui-message.html key='starlyt.callout.tip' default='Tip' %}{% endcapture %}
     {% assign callout_icon_default = 'rocket' %}
   {% when 'caution' %}
-    {% assign callout_title_default = 'Caution' %}
+    {% capture callout_title_default %}{% include private/ui-message.html key='starlyt.callout.caution' default='Caution' %}{% endcapture %}
     {% assign callout_icon_default = 'warning' %}
   {% when 'danger' %}
-    {% assign callout_title_default = 'Danger' %}
+    {% capture callout_title_default %}{% include private/ui-message.html key='starlyt.callout.danger' default='Danger' %}{% endcapture %}
     {% assign callout_icon_default = 'error' %}
   {% else %}
-    {% assign callout_title_default = 'Note' %}
+    {% capture callout_title_default %}{% include private/ui-message.html key='starlyt.callout.note' default='Note' %}{% endcapture %}
     {% assign callout_icon_default = 'information' %}
 {% endcase %}
 {% assign callout_title = include.title | default: callout_title_default | strip %}

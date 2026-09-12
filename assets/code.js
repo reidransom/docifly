@@ -1,5 +1,7 @@
 (() => {
   if (!navigator.clipboard?.writeText) return;
+  const messages = document.documentElement.dataset;
+  if (!messages.copyLabel || !messages.copySuccess || !messages.copyFailure) return;
   document.querySelectorAll('#article pre').forEach((pre) => {
     const code = pre.querySelector('code');
     if (!code || pre.closest('.code-frame')) return;
@@ -15,8 +17,8 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'copy-button';
-    button.title = 'Copy to clipboard';
-    button.setAttribute('aria-label', 'Copy to clipboard');
+    button.title = messages.copyLabel;
+    button.setAttribute('aria-label', messages.copyLabel);
     const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     icon.setAttribute('viewBox', '0 0 24 24');
     icon.setAttribute('aria-hidden', 'true');
@@ -48,9 +50,9 @@
       button.setAttribute('aria-busy', 'true');
       try {
         await navigator.clipboard.writeText(code.textContent);
-        feedback.textContent = 'Copied!';
+        feedback.textContent = messages.copySuccess;
       } catch {
-        feedback.textContent = 'Copy failed';
+        feedback.textContent = messages.copyFailure;
         feedback.dataset.error = '';
       } finally {
         pending = false;

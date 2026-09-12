@@ -1,5 +1,6 @@
 (() => {
   const root = document.getElementById('site-search');
+  const inlineCorpus = document.getElementById('search-corpus');
   const toggle = document.getElementById('search-toggle');
   const dialog = document.getElementById('search-dialog');
   const close = document.getElementById('search-close');
@@ -18,6 +19,20 @@
   )
     return;
 
+  const messages = {
+    retry: root.dataset.searchRetry,
+    empty: root.dataset.searchEmpty,
+    loading: root.dataset.searchLoading,
+    error: root.dataset.searchError,
+    noResults: root.dataset.searchNoResults,
+    oneResult: root.dataset.searchOneResult,
+    results: root.dataset.searchResults,
+  };
+  if (Object.values(messages).some((message) => !message)) return;
+  if (!inlineCorpus && !root.dataset.corpus) return;
+  const resultCount = (count) =>
+    (count === 1 ? messages.oneResult : messages.results).replace('{count}', String(count));
+
   const wordPattern = /[\p{L}\p{N}\p{M}]+/gu;
   const normalize = (value) => value.normalize('NFC').toLocaleLowerCase();
   const tokens = (value) => normalize(value).match(wordPattern) || [];
@@ -31,7 +46,7 @@
     if (!retry) return;
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = 'Retry';
+    button.textContent = messages.retry;
     button.addEventListener('click', load);
     status.append(button);
   };
@@ -72,15 +87,15 @@
     results.replaceChildren();
     const terms = tokens(input.value);
     if (!terms.length) {
-      setStatus('Enter words to search this documentation.');
+      setStatus(messages.empty);
       return;
     }
     if (state.phase === 'loading') {
-      setStatus('Loading search…');
+      setStatus(messages.loading);
       return;
     }
     if (state.phase === 'failed') {
-      setStatus('Search could not load. Check your connection and retry.', true);
+      setStatus(messages.error, true);
       return;
     }
     if (state.phase !== 'ready') return;
@@ -106,10 +121,10 @@
       );
 
     if (!ranked.length) {
-      setStatus('No results found. Try another term.');
+      setStatus(messages.noResults);
       return;
     }
-    setStatus(`${ranked.length} result${ranked.length === 1 ? '' : 's'}`);
+    setStatus(resultCount(ranked.length));
     const list = document.createElement('ol');
     for (const { record, heading } of ranked) {
       const item = document.createElement('li');
@@ -134,11 +149,17 @@
   const load = async () => {
     state.phase = 'loading';
     results.replaceChildren();
-    setStatus('Loading search…');
+    setStatus(messages.loading);
     try {
-      const response = await fetch(root.dataset.corpus, { credentials: 'same-origin' });
-      if (!response.ok) throw new Error(`Search corpus returned ${response.status}`);
-      const payload = await response.json();
+      let payload;
+      if (inlineCorpus) {
+        await Promise.resolve();
+        payload = JSON.parse(inlineCorpus.textContent);
+      } else {
+        const response = await fetch(root.dataset.corpus, { credentials: 'same-origin' });
+        if (!response.ok) throw new Error(`Search corpus returned ${response.status}`);
+        payload = await response.json();
+      }
       if (!Array.isArray(payload?.documents)) throw new Error('Search corpus has an invalid format');
       const index = new window.FlexSearch.Index({ encode: false, tokenize: 'forward', cache: false });
       state.records = payload.documents.map((document, id) => {
@@ -162,7 +183,7 @@
       renderResults();
     } catch {
       state.phase = 'failed';
-      setStatus('Search could not load. Check your connection and retry.', true);
+      setStatus(messages.error, true);
     }
   };
 

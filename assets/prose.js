@@ -1,4 +1,6 @@
 (() => {
+  const anchorLabel = document.documentElement.dataset.anchorLabel;
+  if (!anchorLabel) return;
   document.querySelectorAll('#article :is(h1, h2, h3, h4, h5, h6)[id]').forEach((heading) => {
     if (
       heading.parentElement.classList.contains('sl-heading-wrapper') ||
@@ -18,7 +20,7 @@
     const link = document.createElement('a');
     link.className = 'sl-anchor-link';
     link.href = '#' + encodeURIComponent(heading.id);
-    link.setAttribute('aria-label', 'Section titled “' + heading.textContent.trim() + '”');
+    link.setAttribute('aria-label', anchorLabel.replace('{title}', () => heading.textContent.trim()));
     const icon = document.createElement('span');
     icon.className = 'sl-anchor-icon';
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
