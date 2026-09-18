@@ -10,7 +10,7 @@ print_tree:
       - name: complete-output.txt
         type: file
 ---
-Welcome to **Starlyt Docs**, a documentation site built from ordinary Markdown. Read the [long guide](./guides/long-guide/) or explore the [code examples](./reference/code-examples/).
+Welcome to **Docifly Docs**, a documentation site built from ordinary Markdown. Read the [long guide](./guides/long-guide/) or explore the [code examples](./reference/code-examples/).
 
 ## Getting started
 
@@ -46,6 +46,6 @@ prints its URL. [Internal navigation](./guides/long-guide/), the
 {% capture print_first %}The first printable tab panel remains visible.{% endcapture %}
 {% capture print_second %}The hidden printable tab panel is also complete.{% endcapture %}
 {% capture print_tabs %}{% include components/tab.html label="First print panel" content=print_first %}{% include components/tab.html label="Second print panel" content=print_second %}{% endcapture %}
-{% include components/tabs.html content=print_tabs %}
+{% include components/tabs.html content=print_tabs sync="acceptance-tabs" persist=true %}
 
 {% include components/file-tree.html items=page.print_tree %}

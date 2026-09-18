@@ -11,14 +11,14 @@ const greeting = "Hello, reader";
 function greet(name) {
   return `Hello, ${name}!`;
 }
-console.log(greet("Starlyt"));
+console.log(greet("Docifly"));
 ```
 
 ## JSON
 
 ```json
 {
-  "title": "Starlyt Docs",
+  "title": "Docifly Docs",
   "enabled": true,
   "navigation": ["Overview", "Long guide", "Code examples"]
 }

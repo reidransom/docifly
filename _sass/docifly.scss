@@ -14,9 +14,9 @@
 @use 'print';
 
 /*! Shell geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors.
- * See assets/starlight-LICENSE. Consumers use the compiled assets/starlyt.css. */
-@layer starlight.reset, starlight.base, starlyt;
-@layer starlyt {
+ * See assets/starlight-LICENSE. Consumers use the compiled assets/docifly.css. */
+@layer starlight.reset, starlight.base, docifly;
+@layer docifly {
   [hidden] {
     display: none !important;
   }

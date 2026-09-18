@@ -10,10 +10,10 @@ import { installations, modes, pages, viewports } from './matrix.mjs';
 const browserRoot = dirname(fileURLToPath(import.meta.url));
 const repository = resolve(browserRoot, '../..');
 const artifacts = join(browserRoot, '.artifacts');
-const workspace = join(tmpdir(), 'starlyt-browser-acceptance');
+const workspace = join(tmpdir(), 'docifly-browser-acceptance');
 const source = join(workspace, 'consumer');
 const output = join(workspace, 'site-output');
-const theme = join(source, '_theme', 'starlyt');
+const theme = join(source, '_theme', 'docifly');
 const jigyll = process.env.JIGYLL || 'jigyll';
 
 rmSync(artifacts, { recursive: true, force: true });
@@ -36,10 +36,10 @@ cpSync(repository, theme, {
   },
 });
 
-const config = (baseurl) => `title: Starlyt Docs
+const config = (baseurl) => `title: Docifly Docs
 url: http://127.0.0.1:4444
 baseurl: "${baseurl}"
-theme: starlyt
+theme: docifly
 permalink: pretty
 navigation:
   - label: Overview
@@ -52,7 +52,7 @@ navigation:
     items:
       - label: Code examples
         link: /reference/code-examples/
-starlyt_versioning:
+docifly_versioning:
   entries:
     - id: legacy
       label: Legacy documentation release with an intentionally long label

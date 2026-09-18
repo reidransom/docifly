@@ -13,7 +13,7 @@
     '[contenteditable]',
     '[tabindex]:not([tabindex="-1"])',
   ].join(',');
-  const storagePrefix = 'starlyt-tabs:v1:';
+  const storagePrefix = 'docifly-tabs:v1:';
   const activeBySync = new Map();
   const groupsBySync = new Map();
 
@@ -102,8 +102,8 @@
       const heading = item.querySelector(':scope > .tab-item-label');
       const panel = item.querySelector(':scope > .tab-panel');
       if (!(heading instanceof HTMLElement) || !(panel instanceof HTMLElement)) return;
-      const tabId = `starlyt-tab-${group.groupIndex}-${itemIndex}`;
-      const panelId = `starlyt-tab-panel-${group.groupIndex}-${itemIndex}`;
+      const tabId = `docifly-tab-${group.groupIndex}-${itemIndex}`;
+      const panelId = `docifly-tab-panel-${group.groupIndex}-${itemIndex}`;
       const tab = document.createElement('button');
       tab.type = 'button';
       tab.className = 'tab';

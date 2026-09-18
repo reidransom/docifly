@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and verify Starlyt's localized consumer contract."""
+"""Build and verify Docifly's localized consumer contract."""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ def install_fixture(destination: Path) -> Path:
     site = destination / "site"
     shutil.copytree(FIXTURE, site)
     (site / "_theme").mkdir()
-    shutil.copytree(ROOT, site / "_theme/starlyt", ignore=THEME_IGNORES)
+    shutil.copytree(ROOT, site / "_theme/docifly", ignore=THEME_IGNORES)
     return site
 
 
@@ -78,7 +78,7 @@ def check_inventory() -> None:
         for pattern in ("_layouts/*.html", "_includes/**/*.html", "assets/*.js")
         for path in ROOT.glob(pattern)
     )
-    used = set(re.findall(r"key=['\"](starlyt(?:\.[a-z][a-z0-9_]*)+)['\"]", sources))
+    used = set(re.findall(r"key=['\"](docifly(?:\.[a-z][a-z0-9_]*)+)['\"]", sources))
     assert used <= expected, f"unlisted message keys: {sorted(used - expected)}"
     assert expected == used, f"unused message keys: {sorted(expected - used)}"
     catalogs = {
@@ -86,9 +86,9 @@ def check_inventory() -> None:
         for locale in ("en", "fr", "ar")
     }
     for locale, messages in catalogs.items():
-        actual = {key for key in messages if key.startswith("starlyt.")}
+        actual = {key for key in messages if key.startswith("docifly.")}
         assert actual == expected, f"{locale} catalog mismatch: missing={sorted(expected - actual)} extra={sorted(actual - expected)}"
-    for key, fallback in re.findall(r"key='(starlyt(?:\.[a-z][a-z0-9_]*)+)' default='([^']*)'", sources):
+    for key, fallback in re.findall(r"key='(docifly(?:\.[a-z][a-z0-9_]*)+)' default='([^']*)'", sources):
         assert catalogs["en"][key] == fallback, f"English fallback mismatch for {key}"
     template_literals = (
         "Skip to content",
@@ -190,9 +190,9 @@ def check_nonlocalized_build(jigyll: Path, temporary: Path) -> None:
     site = temporary / "single/site"
     site.mkdir(parents=True)
     (site / "_theme").mkdir()
-    shutil.copytree(ROOT, site / "_theme/starlyt", ignore=THEME_IGNORES)
+    shutil.copytree(ROOT, site / "_theme/docifly", ignore=THEME_IGNORES)
     (site / "_config.yml").write_text(
-        "title: Single language\ntheme: starlyt\nnavigation:\n  - label: Home\n    link: /\ndefaults:\n  - scope: {path: \"\"}\n    values: {layout: default}\n",
+        "title: Single language\ntheme: docifly\nnavigation:\n  - label: Home\n    link: /\ndefaults:\n  - scope: {path: \"\"}\n    values: {layout: default}\n",
         encoding="utf-8",
     )
     (site / "index.md").write_text("---\ntitle: Home\npermalink: /\n---\n\nOrdinary English site.\n", encoding="utf-8")
@@ -220,7 +220,7 @@ def check_failures(jigyll: Path, temporary: Path) -> None:
 
     require_failure(
         scenario(jigyll, temporary, "missing-message", remove_menu),
-        "starlyt.menu",
+        "docifly.menu",
     )
 
     def expose_missing_key(site: Path) -> None:
@@ -234,7 +234,7 @@ def check_failures(jigyll: Path, temporary: Path) -> None:
     exposed = scenario(jigyll, temporary, "missing-message-key", expose_missing_key)
     require_success(exposed)
     exposed_page = (temporary / "missing-message-key-output/fr/accueil/index.html").read_text(encoding="utf-8")
-    assert 'aria-label="starlyt.menu"' in exposed_page
+    assert 'aria-label="docifly.menu"' in exposed_page
 
     def remove_required(site: Path) -> None:
         (site / "facultatif.md").unlink()
@@ -278,7 +278,7 @@ def main() -> None:
     jigyll = args.jigyll.resolve()
     assert jigyll.is_file(), f"Jigyll binary not found: {jigyll}"
     check_inventory()
-    with tempfile.TemporaryDirectory(prefix="starlyt-localization-") as directory:
+    with tempfile.TemporaryDirectory(prefix="docifly-localization-") as directory:
         temporary = Path(directory)
         check_localized_build(jigyll, temporary)
         check_nonlocalized_build(jigyll, temporary)

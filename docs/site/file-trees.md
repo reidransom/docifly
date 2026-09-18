@@ -101,7 +101,7 @@ invalid_tree:
     name: missing-children
 ---
 
-File trees render explicit structured front matter as native directory disclosures and static file rows. File-tree text is illustrative UI and is excluded from Starlyt's article search corpus.
+File trees render explicit structured front matter as native directory disclosures and static file rows. File-tree text is illustrative UI and is excluded from Docifly's article search corpus.
 
 ## Project structure
 

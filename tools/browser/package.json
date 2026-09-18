@@ -1,5 +1,5 @@
 {
-  "name": "starlyt-browser-acceptance",
+  "name": "docifly-browser-acceptance",
   "private": true,
   "type": "module",
   "scripts": {

@@ -3,7 +3,7 @@ title: Theme internals
 permalink: /internals/
 ---
 
-Starlyt is a Git-installable Jigyll theme. Its implementation is a server-rendered shell, shipped CSS, and small browser enhancements. The documentation consumer supplies only configuration, Markdown, and content artwork; it does not copy the implementation into its own source.
+Docifly is a Git-installable Jigyll theme. Its implementation is a server-rendered shell, shipped CSS, and small browser enhancements. The documentation consumer supplies only configuration, Markdown, and content artwork; it does not copy the implementation into its own source.
 
 ## Installation and ownership
 
@@ -31,12 +31,12 @@ Text labels and titles are escaped. A navigation badge contributes to its link n
 
 ## Styles and shipped output
 
-`_sass/starlyt.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, and content components, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
+`_sass/docifly.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, and content components, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
 
-Consumers load `assets/starlyt.css`. Maintainers changing Sass compile that shipped artifact with a Sass CLI:
+Consumers load `assets/docifly.css`. Maintainers changing Sass compile that shipped artifact with a Sass CLI:
 
 ```sh
-sass --no-source-map _sass/starlyt.scss assets/starlyt.css
+sass --no-source-map _sass/docifly.scss assets/docifly.css
 ```
 
 Run this from the theme repository root, not the documentation consumer. A standalone Dart Sass executable can supply this maintainer command without Node.js. Merely editing Markdown does not require compilation, and consumers do not need a Sass installation.
@@ -63,7 +63,7 @@ Session persistence stores group state and scroll position under a base-URL-spec
 
 ### Table of contents
 
-`_includes/toc.html` renders an Overview entry and eligible H2/H3 entries from Jigyll 1.12.0's `page.headings` metadata. The engine collects that flat, article-ordered `{level, id, text}` list from rendered article HTML before layouts; it includes `.no_toc`, nested-Markdown, repeated, and explicit IDs unchanged. Starlyt skips entries without IDs or labels and does not derive replacement slugs.
+`_includes/toc.html` renders an Overview entry and eligible H2/H3 entries from Jigyll 1.12.0's `page.headings` metadata. The engine collects that flat, article-ordered `{level, id, text}` list from rendered article HTML before layouts; it includes `.no_toc`, nested-Markdown, repeated, and explicit IDs unchanged. Docifly skips entries without IDs or labels and does not derive replacement slugs.
 
 `assets/toc.js` enhances the existing links. It switches between a rail and a disclosure, maintains current-section feedback from the article headings, and focuses the emitted target after link selection. It does not create, remove, or label TOC entries.
 

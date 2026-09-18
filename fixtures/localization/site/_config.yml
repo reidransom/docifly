@@ -1,7 +1,7 @@
-title: Localized Starlyt
+title: Localized Docifly
 url: https://example.test
 baseurl: ""
-theme: starlyt
+theme: docifly
 navigation:
   - label_key: nav.guides
     items:

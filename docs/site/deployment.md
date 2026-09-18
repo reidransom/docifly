@@ -14,7 +14,7 @@ url: https://docs.example.com
 baseurl: ""
 ```
 
-`docs.example.com` is an illustrative deployment origin, not a Starlyt service. Replace it with your own host. From this project's repository root, the installed documentation consumer builds with:
+`docs.example.com` is an illustrative deployment origin, not a Docifly service. Replace it with your own host. From this project's repository root, the installed documentation consumer builds with:
 
 ```sh
 jigyll build --source .poc/living-docs
@@ -68,7 +68,7 @@ The overview uses `./getting-started/` because its route is `/`. Images use the 
 
 ## Publish a custom 404 page
 
-Starlyt supplies the `not-found` layout, but a theme cannot create a consumer route or configure a hosting provider. Add a root `404.md` to the consumer:
+Docifly supplies the `not-found` layout, but a theme cannot create a consumer route or configure a hosting provider. Add a root `404.md` to the consumer:
 
 ```yaml
 ---

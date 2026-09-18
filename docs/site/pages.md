@@ -61,7 +61,7 @@ hero:
     height: 480
 ```
 
-`alt`, `width`, and `height` are required. Alternative text may be empty only when the artwork is decorative. Image paths are root-relative without `baseurl`; Starlyt applies the deployment prefix. Incomplete pairs, nonpositive dimensions, and non-root-relative paths omit the image instead of emitting broken markup.
+`alt`, `width`, and `height` are required. Alternative text may be empty only when the artwork is decorative. Image paths are root-relative without `baseurl`; Docifly applies the deployment prefix. Incomplete pairs, nonpositive dimensions, and non-root-relative paths omit the image instead of emitting broken markup.
 
 ## Supported combinations
 

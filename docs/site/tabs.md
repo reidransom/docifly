@@ -3,7 +3,7 @@ title: Tabs
 permalink: /tabs/
 ---
 
-Starlyt renders captured Markdown as semantic stacked sections, then progressively enhances them into keyboard-operable tabs. Every label and panel remains readable when JavaScript is unavailable.
+Docifly renders captured Markdown as semantic stacked sections, then progressively enhances them into keyboard-operable tabs. Every label and panel remains readable when JavaScript is unavailable.
 
 ## Independent tabs
 
@@ -43,7 +43,7 @@ Labels are required escaped plain text. `icon` optionally accepts a frozen publi
 
 ## Synchronized and persistent groups
 
-Groups with the same nonempty `sync` key synchronize by exact label. A group missing the selected label keeps its current panel. `persist=true` stores the synchronized label under a versioned Starlyt key; it defaults to false and has no effect without `sync`.
+Groups with the same nonempty `sync` key synchronize by exact label. A group missing the selected label keeps its current panel. `persist=true` stores the synchronized label under a versioned Docifly key; it defaults to false and has no effect without `sync`.
 
 {% capture npm_panel %}
 Install with npm.

@@ -3,7 +3,7 @@ title: Code blocks
 permalink: /code/
 ---
 
-Fenced code is rendered by Jigyll and highlighted by Chroma. Starlyt styles that output and adds a clipboard control when the browser supports it. The blocks on this page are the examples themselves, not a separate test fixture.
+Fenced code is rendered by Jigyll and highlighted by Chroma. Docifly styles that output and adds a clipboard control when the browser supports it. The blocks on this page are the examples themselves, not a separate test fixture.
 
 ## Author a fenced block
 
@@ -31,13 +31,13 @@ Jigyll 1.13.0 adds fenced-code UI metadata after the language. A nonempty
 double-quoted `title` creates an editor frame for ordinary languages:
 
 ```javascript title="site.config.js"
-export const theme = "starlyt";
+export const theme = "docifly";
 ```
 
 An explicit frame does not require a title:
 
 ```yaml frame="editor"
-theme: starlyt
+theme: docifly
 ```
 
 A title infers a terminal frame for `bash`, `sh`, `shell`, `console`,
@@ -169,17 +169,17 @@ def greeting(name):
     message = f"Hello, {name}"
     return message
 
-print(greeting("Starlyt"))
+print(greeting("Docifly"))
 ```
 
-Starlyt reads the rendered `code.textContent` for copying. It does not trim the text, reconstruct it from colored spans, or include the copy button's label. What matters is the code a reader can paste, not the highlighter's internal token markup.
+Docifly reads the rendered `code.textContent` for copying. It does not trim the text, reconstruct it from colored spans, or include the copy button's label. What matters is the code a reader can paste, not the highlighter's internal token markup.
 
 ## Keep long lines local
 
 This deliberately long JSON line is useful for inspecting horizontal scrolling inside a block. Scroll the block rather than widening the entire document:
 
 ```json title="wide.json"
-{"site":"Starlyt","workflow":["write ordinary Markdown","install the theme through Jigyll","build the separate consumer","read the generated documentation","try the navigation and clipboard controls at a narrow window width"],"automatedTesting":false}
+{"site":"Docifly","workflow":["write ordinary Markdown","install the theme through Jigyll","build the separate consumer","read the generated documentation","try the navigation and clipboard controls at a narrow window width"],"automatedTesting":false}
 ```
 
 The copy control should remain usable even when the code extends beyond the visible block. Use a keyboard to reach the block and its control as well as a pointer.

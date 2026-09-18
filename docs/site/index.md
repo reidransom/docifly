@@ -1,5 +1,5 @@
 ---
-title: Starlyt
+title: Docifly
 layout: splash
 permalink: /
 hero:
@@ -7,7 +7,7 @@ hero:
   image:
     light: /media/hero-light.svg
     dark: /media/hero-dark.svg
-    alt: A four-pointed Starlyt star
+    alt: A four-pointed Docifly star
     width: 400
     height: 400
   actions:
@@ -19,7 +19,7 @@ hero:
       variant: minimal
 ---
 
-Starlyt is a documentation theme for **Jigyll**. Its visual and responsive reference is **stock Starlight**: the default documentation experience, not the customized Starlight website.
+Docifly is a documentation theme for **Jigyll**. Its visual and responsive reference is **stock Starlight**: the default documentation experience, not the customized Starlight website.
 
 This site is both the project documentation and a place to try the theme. The sidebar, heading links, table of contents, code blocks, and color selector are real theme features—not illustrations of a separate demo.
 
@@ -42,7 +42,7 @@ Then organize your [navigation](./navigation/), write [headings](./headings/), a
 
 ## Scope and limitations
 
-Starlyt provides documentation and splash layouts, optional heroes, recursive navigation, heading navigation, Markdown/code presentation, color modes, and local full-text search. Its component and output support is documented feature by feature.
+Docifly provides documentation and splash layouts, optional heroes, recursive navigation, heading navigation, Markdown/code presentation, color modes, and local full-text search. Its component and output support is documented feature by feature.
 
 **Visual parity** means agreement in appearance across an explicitly defined set of conditions. **Interaction parity** means agreement in observable control behavior. Using this site manually does not establish complete visual parity or interaction parity with stock Starlight.
 

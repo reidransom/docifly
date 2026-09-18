@@ -3,7 +3,7 @@ title: Markdown
 permalink: /markdown/
 ---
 
-These are ordinary Markdown examples rendered by Jigyll and styled by Starlyt. Source blocks show how to author selected examples; the rendered content below them is also useful for manual inspection.
+These are ordinary Markdown examples rendered by Jigyll and styled by Docifly. Source blocks show how to author selected examples; the rendered content below them is also useful for manual inspection.
 
 ## Inline formatting
 
@@ -51,7 +51,7 @@ A list is still part of the article: nesting and wrapped lines should not make t
 > Good documentation explains what a reader can do,
 > not just how the software is arranged.
 
-This is a blockquote, not a custom callout or an Astro component. Starlyt does not need special component syntax to present ordinary prose.
+This is a blockquote, not a custom callout or an Astro component. Docifly does not need special component syntax to present ordinary prose.
 
 ## Tables
 

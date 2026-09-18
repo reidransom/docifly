@@ -3,29 +3,29 @@ title: Getting started
 permalink: /getting-started/
 ---
 
-Install Starlyt as a Git theme, then write ordinary Markdown in your own Jigyll site. The theme supplies the presentation; your site owns its configuration and content.
+Install Docifly as a Git theme, then write ordinary Markdown in your own Jigyll site. The theme supplies the presentation; your site owns its configuration and content.
 
 ## Install a consumer
 
 Install Git and Jigyll 1.13.0 or later first. You do not need Node.js, Astro, a Jigyll plugin, or a Sass compiler to use the shipped theme.
 
-From a local checkout named `starlyt`, create a new sibling site:
+From a local checkout named `docifly`, create a new sibling site:
 
 ```sh
 jigyll new ../my-docs --theme "$PWD"
 ```
 
-Run this command from the **Starlyt repository root**, not from an existing consumer. The target must be new. `$PWD` is the local Git source; Jigyll clones its committed contents, not uncommitted edits. A Git URL can be used instead when installing from a hosted repository.
+Run this command from the **Docifly repository root**, not from an existing consumer. The target must be new. `$PWD` is the local Git source; Jigyll clones its committed contents, not uncommitted edits. A Git URL can be used instead when installing from a hosted repository.
 
 For this project's own documentation, use the repository README's installed-consumer instructions. There is no need to recreate these guide pages yourself.
 
 ## Configure your site
 
-Edit `../my-docs/_config.yml`. For a checkout named `starlyt`, a minimal configuration is:
+Edit `../my-docs/_config.yml`. For a checkout named `docifly`, a minimal configuration is:
 
 ```yaml
 title: My documentation
-theme: starlyt
+theme: docifly
 url: ""
 baseurl: ""
 navigation:
@@ -80,7 +80,7 @@ The layout renders the front-matter title as the page H1. Start article sections
 
 ## Build and preview
 
-From the Starlyt repository root, build and serve your sibling consumer:
+From the Docifly repository root, build and serve your sibling consumer:
 
 ```sh
 jigyll build --source ../my-docs

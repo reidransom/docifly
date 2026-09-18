@@ -22,7 +22,7 @@ Calibration: independent `reference-repeat` contexts passed all 40 historical co
 
 ## Theme installation and shared contract (30)
 
-Consumers run `jigyll new my-site --theme <git-url>`, set `title`, `navigation`, and a layout default in their own `_config.yml`, then run `jigyll build` or `jigyll serve`. Theme configuration/data are not merged. The POC tested Jigyll 1.10.1; current Starlyt requires Jigyll 1.12.0 or later. There is no consumer Node/Astro/Sass dependency.
+Consumers run `jigyll new my-site --theme <git-url>`, set `title`, `navigation`, and a layout default in their own `_config.yml`, then run `jigyll build` or `jigyll serve`. Theme configuration/data are not merged. The POC tested Jigyll 1.10.1; current Docifly requires Jigyll 1.12.0 or later. There is no consumer Node/Astro/Sass dependency.
 
 ```yaml
 title: My documentation

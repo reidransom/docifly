@@ -9,6 +9,15 @@ const waitForLayout = async (page) => {
 };
 
 for (const installation of installations) {
+  test(`${installation.name} exposes the Docifly consumer contract`, async ({ page }) => {
+    await page.goto(urlFor(installation, pages[0]));
+    await expect(page.locator('header .site-title')).toHaveText('Docifly Docs');
+    const stylesheet = page.locator('link[rel="stylesheet"]');
+    await expect(stylesheet).toHaveAttribute('href', /\/assets\/docifly\.css$/);
+    const response = await page.request.get(new URL(await stylesheet.getAttribute('href'), page.url()).href);
+    expect(response.ok()).toBe(true);
+  });
+
   for (const pageEntry of pages) {
     for (const mode of modes) {
       for (const viewport of viewports) {
@@ -151,8 +160,24 @@ for (const installation of installations) {
     const initial = await disclosure.evaluate((details) => details.open);
     await disclosure.locator('summary').click();
     await expect.poll(() => disclosure.evaluate((details) => details.open)).toBe(!initial);
+    const storageKeys = await page.evaluate(() => Object.keys(sessionStorage));
+    expect(storageKeys.some((key) => key.startsWith('docifly-sidebar:'))).toBe(true);
+    expect(storageKeys.some((key) => key.startsWith('starlyt-sidebar:'))).toBe(false);
     await page.reload();
     await expect.poll(() => disclosure.evaluate((details) => details.open)).toBe(!initial);
+  });
+
+  test(`${installation.name} synchronized tab state uses the Docifly namespace`, async ({ page }) => {
+    await page.goto(urlFor(installation, pages[0]));
+    const tabs = page.locator('[role="tab"]');
+    await expect(tabs).toHaveCount(2);
+    await tabs.nth(1).click();
+    await expect.poll(() =>
+      page.evaluate(() => localStorage.getItem('docifly-tabs:v1:acceptance-tabs')),
+    ).toBe('Second print panel');
+    expect(await page.evaluate(() => localStorage.getItem('starlyt-tabs:v1:acceptance-tabs'))).toBeNull();
+    await page.reload();
+    await expect(tabs.nth(1)).toHaveAttribute('aria-selected', 'true');
   });
 
   test(`${installation.name} TOC navigates and cleans up at its breakpoint`, async ({ page }) => {
@@ -239,7 +264,7 @@ for (const installation of installations) {
     await page.locator('#menu-toggle').click();
     await expect(page.locator('#site-nav a').first()).toBeVisible();
     await page.goto(urlFor(installation, pages[2]));
-    await expect(page.locator('#article code').first()).toContainText('console.log(greet("Starlyt"));');
+    await expect(page.locator('#article code').first()).toContainText('console.log(greet("Docifly"));');
     await expect(page.locator('.copy-button')).toHaveCount(0);
     const versionPicker = page.locator('#version-picker');
     await expect(versionPicker).toBeVisible();
