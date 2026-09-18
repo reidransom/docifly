@@ -167,9 +167,9 @@ def check_localized_build(jigyll: Path, temporary: Path) -> None:
     assert 'https://example.test/docs/fr/demarrage/' in prefixed
     assert 'src="/docs/assets/rtl-layout.svg"' in prefixed_arabic
     assert not (root / "ar/facultatif/index.html").exists()
-    french_picker = re.search(r'<details id="language-picker">(.*?)</details>', french, re.DOTALL)
-    optional_picker = re.search(r'<details id="language-picker">(.*?)</details>', optional, re.DOTALL)
-    prefix_picker = re.search(r'<details id="language-picker">(.*?)</details>', prefixed, re.DOTALL)
+    french_picker = re.search(r'<details id="language-picker"[^>]*>(.*?)</details>', french, re.DOTALL)
+    optional_picker = re.search(r'<details id="language-picker"[^>]*>(.*?)</details>', optional, re.DOTALL)
+    prefix_picker = re.search(r'<details id="language-picker"[^>]*>(.*?)</details>', prefixed, re.DOTALL)
     assert french_picker and optional_picker and prefix_picker
     assert "Français — documentation détaillée" in french_picker.group(1)
     assert 'aria-current="page"' in french_picker.group(1)

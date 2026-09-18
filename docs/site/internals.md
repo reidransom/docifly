@@ -45,11 +45,11 @@ The principal responsive transitions are 50rem for sidebar/menu placement and 72
 
 ## Browser enhancement ownership
 
-The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, prose, TOC, FlexSearch, search, tabs, then code. No client renderer or hydration framework is involved.
+The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, global controls, prose, TOC, FlexSearch, search, tabs, then code. No client renderer or hydration framework is involved.
 
 ### Color mode
 
-`assets/color-mode.js` distinguishes the stored preference from the effective palette. It reads `starlight-theme`, applies the root `data-theme` value, responds to system changes, and initializes the one selector after DOM readiness. Storage errors do not prevent in-memory selection. A media query moves the same picker between header and mobile navigation.
+`assets/color-mode.js` distinguishes the stored preference from the effective palette. It reads `starlight-theme`, applies the root `data-theme` value, responds to system changes, and initializes the one selector after DOM readiness. Storage errors do not prevent in-memory selection. `assets/global-controls.js` owns responsive placement of the language and color controls: it moves their shared container between the header and Menu at the 50rem navigation transition without duplicating either control.
 
 ### Navigation
 

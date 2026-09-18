@@ -16,9 +16,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const picker = document.getElementById('mode-picker');
     const select = document.getElementById('color-mode');
-    const header = document.querySelector('header');
-    const nav = document.getElementById('site-nav');
-    if (!picker || !(select instanceof HTMLSelectElement) || !header) return;
+    if (!picker || !(select instanceof HTMLSelectElement)) return;
     const icon = picker.querySelector('svg path');
     const icons = {
       auto: 'M4 4h16v12H4z M1 20h22 M9 16v4m6-4v4',
@@ -42,15 +40,6 @@
         /* This tab still honors changes when persistence is denied. */
       }
     });
-    const desktop = matchMedia('(min-width: 50rem)');
-    const placePicker = () => {
-      const focused = document.activeElement === select;
-      (desktop.matches || !nav ? header : nav).append(picker);
-      if (focused && (desktop.matches || !nav)) select.focus();
-      if (focused && !desktop.matches && nav) document.getElementById('menu-toggle')?.focus();
-    };
-    placePicker();
-    desktop.addEventListener('change', placePicker);
     picker.hidden = false;
   });
 })();

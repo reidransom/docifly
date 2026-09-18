@@ -1,5 +1,5 @@
 {% if page.all_translations.size > 1 %}
-<details id="language-picker">
+<details id="language-picker" data-global-control>
   <summary aria-label="{% include private/ui-message.html key='starlyt.language' default='Language' %}: {{ page.language.label | escape }}">
     <span class="language-picker-control">
       {% include components/icon.html name='translate' size='small' %}

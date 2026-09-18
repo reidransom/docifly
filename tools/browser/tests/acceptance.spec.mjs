@@ -111,6 +111,22 @@ for (const installation of installations) {
     await expect.poll(() => page.locator('#main-content').evaluate((main) => main.inert)).toBe(false);
   });
 
+  test(`${installation.name} global controls move without duplicate focus`, async ({ page }) => {
+    await page.setViewportSize({ width: 800, height: 768 });
+    await page.goto(urlFor(installation, pages[0]));
+    await expect(page.locator('header #color-mode')).toBeVisible();
+    await page.locator('#color-mode').focus();
+    await page.setViewportSize({ width: 799, height: 768 });
+    await expect(page.locator('#menu-toggle')).toBeFocused();
+    await expect(page.locator('#color-mode')).toHaveCount(1);
+    await page.locator('#menu-toggle').click();
+    await expect(page.locator('#site-nav #color-mode')).toBeVisible();
+    await page.setViewportSize({ width: 800, height: 768 });
+    await expect(page.locator('header #color-mode')).toBeVisible();
+    await expect(page.locator('#color-mode')).toHaveCount(1);
+    await expect.poll(() => page.locator('#main-content').evaluate((main) => main.inert)).toBe(false);
+  });
+
   test(`${installation.name} disclosure state survives reload`, async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 });
     await page.goto(urlFor(installation, pages[0]));
