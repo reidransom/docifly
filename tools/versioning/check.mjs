@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { createServer } from 'node:http';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
@@ -60,6 +61,29 @@ try {
   const successful = JSON.parse(readFileSync(report, 'utf8'));
   require(successful.status === 'success' && successful.releases.length === 3, 'success report is incomplete');
   require(successful.releases.every((release) => release.commit && release.destination), 'report omitted release provenance');
+  const server = createServer((request, response) => {
+    const pathname = new URL(request.url, 'http://127.0.0.1').pathname;
+    const file = resolve(stage, `.${pathname.endsWith('/') ? `${pathname}index.html` : pathname}`);
+    if (!file.startsWith(`${stage}/`)) {
+      response.writeHead(400).end();
+      return;
+    }
+    try {
+      response.writeHead(200, { 'content-type': 'text/html; charset=utf-8' }).end(readFileSync(file));
+    } catch {
+      response.writeHead(404).end();
+    }
+  });
+  await new Promise((done) => server.listen(0, '127.0.0.1', done));
+  try {
+    const origin = `http://127.0.0.1:${server.address().port}`;
+    const servedFirst = await (await fetch(`${origin}/`)).text();
+    const servedSecond = await (await fetch(`${origin}/v2/`)).text();
+    require(servedFirst.includes('First release documentation.'), 'served root did not identify its release');
+    require(servedSecond.includes('Second release documentation.'), 'configured version homepage did not serve its release');
+  } finally {
+    await new Promise((done) => server.close(done));
+  }
 
   writeFileSync(join(stage, 'previous-stage.txt'), 'keep until a successful replacement\n');
   buildMatrix({ entries: [{ id: 'v1', label: 'Version 1', ref: first, baseUrl: '/' }, { id: 'v1', label: 'Duplicate', ref: second, baseUrl: '/v2/' }] }, 1);
