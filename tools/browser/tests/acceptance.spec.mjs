@@ -127,6 +127,23 @@ for (const installation of installations) {
     await expect.poll(() => page.locator('#main-content').evaluate((main) => main.inert)).toBe(false);
   });
 
+  test(`${installation.name} version picker uses configured homepages`, async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 });
+    await page.goto(urlFor(installation, pages[1]));
+    const picker = page.locator('#version-picker');
+    await expect(picker).toBeVisible();
+    await expect(picker.locator('summary')).toHaveAttribute('aria-label', 'Version: Current documentation release');
+    await picker.locator('summary').click();
+    await expect(picker.locator('.version-option.current')).toHaveText('Current documentation release');
+    await expect(picker.locator('a.version-option')).toHaveAttribute('href', '/legacy/');
+    await expect(picker.locator('a.version-option')).toHaveText('Legacy documentation release with an intentionally long label');
+    await expect(picker.locator('a.version-option')).toHaveCount(1);
+    await page.setViewportSize({ width: 799, height: 768 });
+    await page.locator('#menu-toggle').click();
+    await expect(page.locator('#site-nav #version-picker')).toBeVisible();
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+  });
+
   test(`${installation.name} disclosure state survives reload`, async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 });
     await page.goto(urlFor(installation, pages[0]));
@@ -224,6 +241,12 @@ for (const installation of installations) {
     await page.goto(urlFor(installation, pages[2]));
     await expect(page.locator('#article code').first()).toContainText('console.log(greet("Starlyt"));');
     await expect(page.locator('.copy-button')).toHaveCount(0);
+    const versionPicker = page.locator('#version-picker');
+    await expect(versionPicker).toBeVisible();
+    await versionPicker.locator('summary').click();
+    await expect(versionPicker.locator('.version-option.current')).toHaveText('Current documentation release');
+    await expect(versionPicker.locator('a.version-option')).toHaveAttribute('href', '/legacy/');
+    await expect(versionPicker.locator('a.version-option')).toBeVisible();
     await context.close();
   });
 }

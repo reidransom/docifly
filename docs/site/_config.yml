@@ -53,6 +53,8 @@ navigation:
             link: /color-modes/
       - label: Deployment
         link: /deployment/
+      - label: Versioned documentation
+        link: /versioning/
   - label: Maintainers
     items:
       - label: Theme internals

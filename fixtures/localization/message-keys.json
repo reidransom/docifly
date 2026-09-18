@@ -30,5 +30,6 @@
   "starlyt.search.results",
   "starlyt.search.retry",
   "starlyt.skip_to_content",
-  "starlyt.table_of_contents"
+  "starlyt.table_of_contents",
+  "starlyt.version"
 ]

@@ -52,6 +52,15 @@ navigation:
     items:
       - label: Code examples
         link: /reference/code-examples/
+starlyt_versioning:
+  entries:
+    - id: legacy
+      label: Legacy documentation release with an intentionally long label
+      base_url: /legacy/
+    - id: current
+      label: Current documentation release
+      base_url: ${baseurl || '/'}
+  active_id: current
 defaults:
   - scope: {path: ""}
     values: {layout: default}

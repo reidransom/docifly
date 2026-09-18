@@ -27,6 +27,7 @@ starlyt:
     success: "Copied!"
     failure: "Copy failed"
   language: "Language"
+  version: "Version"
   callout:
     note: "Note"
     tip: "Tip"

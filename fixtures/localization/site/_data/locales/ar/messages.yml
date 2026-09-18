@@ -27,6 +27,7 @@ starlyt:
     success: "تم النسخ!"
     failure: "فشل النسخ"
   language: "اللغة"
+  version: "الإصدار"
   callout:
     note: "ملاحظة"
     tip: "نصيحة"
