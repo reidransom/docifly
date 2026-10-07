@@ -1,18 +1,17 @@
 # Docifly
 
-Docifly is an independent documentation theme for Jigyll, using stock Starlight as its visual and responsive reference. It is not affiliated with or endorsed by Astro or the Starlight project. Consumers use the shipped CSS and browser JavaScript; Node.js, Astro, and a Sass compiler are not required.
+Docifly is a documentation theme for Jigyll, using stock Starlight as visual reference only.
 
 ## Start a new site
 
-Install Git and Jigyll 1.13.0 or later. Docifly is installed directly from a published Git repository; Jigyll alone cannot discover the theme. Set `DOCIFLY_GIT_URL` to the HTTPS or SSH clone URL for the published Docifly repository, then create a consumer:
+Install Git and Jigyll 1.13.0 or later, then create a site with Docifly:
 
 ```sh
-DOCIFLY_GIT_URL=https://github.com/OWNER/docifly.git
-jigyll new my-docs --theme "$DOCIFLY_GIT_URL"
+jigyll new my-docs --theme https://github.com/reidransom/docifly.git
 cd my-docs
 ```
 
-The installer clones the theme into `_theme/docifly/`. Keep the generated `theme` value if the repository has a different name.
+The installer clones Docifly into `_theme/docifly/`.
 
 Replace `_config.yml` with a minimal site configuration:
 
