@@ -57,6 +57,8 @@ navigation:
         link: /versioning/
   - label: Maintainers
     items:
+      - label: Developing Docifly
+        link: /development/
       - label: Theme internals
         link: /internals/
       - label: Manual inspection of navigation, headings, and code

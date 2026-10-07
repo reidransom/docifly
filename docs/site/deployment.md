@@ -20,7 +20,7 @@ baseurl: ""
 jigyll build --source .poc/living-docs
 ```
 
-Serve it locally with the README's ordinary `jigyll serve` command. A local HTTP preview is preferable to opening generated HTML with a `file:` URL: absolute asset paths and Clipboard API availability depend on an appropriate origin.
+Serve it locally with the command in [Developing Docifly](../development/). A local HTTP preview is preferable to opening generated HTML with a `file:` URL: absolute asset paths and Clipboard API availability depend on an appropriate origin.
 
 ## Host under a prefix
 

@@ -9,7 +9,7 @@ Docifly is a Git-installable Jigyll theme. Its implementation is a server-render
 
 Jigyll resolves the selected theme from the consumer's `_theme/` directory. Theme layouts, includes, Sass, and assets participate in the normal build; consumer files with the same names take precedence. Theme configuration and data are not merged into the site.
 
-That makes the ordinary installed site the useful manual exercise surface. A direct build from the theme development tree could hide an installation or override problem. The repository README explains how to install and refresh this documentation's consumer without a custom harness.
+That makes the ordinary installed site the useful manual exercise surface. A direct build from the theme development tree could hide an installation or override problem. [Developing Docifly](../development/) explains how to install and refresh this documentation's consumer without a custom harness.
 
 ## Layout and includes
 
