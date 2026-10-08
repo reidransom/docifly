@@ -3,7 +3,7 @@ title: Docifly
 layout: splash
 permalink: /
 hero:
-  tagline: A standalone documentation theme for Jigyll, referenced against stock Starlight.
+  tagline: A standalone Jigyll documentation theme that uses stock Starlight as its design reference.
   image:
     src: /media/docifly-icon.svg
     alt: Docifly purple folded D logo
@@ -18,13 +18,13 @@ hero:
       variant: minimal
 ---
 
-Docifly is a documentation theme for **Jigyll**. Its visual and responsive reference is **stock Starlight**: the default documentation experience, not the customized Starlight website.
+Docifly is a documentation theme for Jigyll. It uses stock Starlight as the reference for its appearance and responsive behavior, not the customized Starlight website.
 
-This site is both the project documentation and a place to try the theme. The sidebar, heading links, table of contents, code blocks, and color selector are real theme features—not illustrations of a separate demo.
+This documentation site runs Docifly. You can try its sidebar, heading links, table of contents, code blocks, and color selector right here.
 
 ## Start with a working site
 
-Read [Getting started](./getting-started/) to install the theme and configure a consumer. No Node.js, Astro, or Sass installation is needed to consume the shipped theme.
+Read [Getting started](./getting-started/) to install Docifly and configure your site. You don't need to install Node.js, Astro, or Sass to use the shipped theme.
 
 Then organize your [navigation](./navigation/), write [headings](./headings/), and choose a [deployment location](./deployment/).
 
@@ -37,12 +37,12 @@ Then organize your [navigation](./navigation/), write [headings](./headings/), a
 
 ## Understand the implementation
 
-[Theme internals](./internals/) maps the layout, includes, Sass, and browser enhancements to their responsibilities. These docs are ordinary Markdown in a separate installed consumer. They do not require a browser test runner or a documentation preprocessing step.
+[Theme internals](./internals/) explains what the layouts, includes, Sass, and browser enhancements do. These docs are plain Markdown in a separate site with Docifly installed. They need no browser test runner or documentation preprocessing.
 
 ## Scope and limitations
 
-Docifly provides documentation and splash layouts, optional heroes, recursive navigation, heading navigation, Markdown/code presentation, color modes, and local full-text search. Its component and output support is documented feature by feature.
+Docifly has documentation and splash layouts with optional heroes. It supports recursive navigation, heading navigation, Markdown and code formatting, color modes, and local full-text search. Each feature's docs describe the supported components and output.
 
-**Visual parity** means agreement in appearance across an explicitly defined set of conditions. **Interaction parity** means agreement in observable control behavior. Using this site manually does not establish complete visual parity or interaction parity with stock Starlight.
+Visual parity means matching appearances under a defined set of conditions. Interaction parity means matching observable control behavior. Trying this site by hand does not prove that it fully matches stock Starlight in either respect.
 
-Historical POC results remain in the repository's `docs/poc.md` and `evidence/poc/`. Their capture tooling has been retired; those results are not a fresh measurement of this documentation site.
+The repository's `docs/poc.md` and `evidence/poc/` contain historical proof-of-concept results. The tools that captured those results have been retired, so they are not a current measurement of this documentation site.
