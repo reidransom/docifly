@@ -61,4 +61,4 @@ Theme maintainers should use the installed-consumer workflow in [Developing Doci
 
 ## Attribution
 
-The theme retains upstream notices beside shipped third-party assets. Stock Starlight attribution is in `assets/starlight-LICENSE`, FlexSearch attribution is in `assets/flexsearch-LICENSE`, and the frozen Seti file-icon inventory is covered by `assets/file-tree-icons-LICENSE`.
+The theme retains upstream notices beside shipped third-party assets. Stock Starlight attribution is in `assets/starlight-LICENSE`, and the frozen Seti file-icon inventory is covered by `assets/file-tree-icons-LICENSE`. Search loads the [MIT-licensed MiniSearch](https://github.com/lucaong/minisearch/blob/v7.2.0/LICENSE.txt) directly from jsDelivr; its bundle is not vendored.

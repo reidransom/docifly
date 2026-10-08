@@ -15,7 +15,7 @@
     !(input instanceof HTMLInputElement) ||
     !status ||
     !results ||
-    !window.FlexSearch
+    !window.MiniSearch
   )
     return;
 
@@ -100,10 +100,9 @@
     }
     if (state.phase !== 'ready') return;
 
-    const candidates = state.index.search({ query: terms.at(-1), limit: 0, resolve: false });
-    const ids = Array.isArray(candidates) ? candidates : candidates.result || [];
-    const ranked = ids
-      .map((id) => state.records[id])
+    const candidates = state.index.search(terms.at(-1), { prefix: true, fuzzy: false });
+    const ranked = candidates
+      .map(({ id }) => state.records[id])
       .filter((record) => record && matches(terms, record.all))
       .map((record) => {
         const heading = record.headings.find(
@@ -161,7 +160,11 @@
         payload = await response.json();
       }
       if (!Array.isArray(payload?.documents)) throw new Error('Search corpus has an invalid format');
-      const index = new window.FlexSearch.Index({ encode: false, tokenize: 'forward', cache: false });
+      const index = new window.MiniSearch({
+        fields: ['all'],
+        tokenize: tokens,
+        processTerm: (term) => term,
+      });
       state.records = payload.documents.map((document, id) => {
         const headings = Array.isArray(document.headings)
           ? document.headings
@@ -175,7 +178,7 @@
           headings,
         };
         record.all = [record.title, record.body, ...headings.map((heading) => heading.text)].join(' ');
-        index.add(id, normalize(record.all));
+        index.add({ id, all: record.all });
         return record;
       });
       state.index = index;

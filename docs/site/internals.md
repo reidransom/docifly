@@ -45,7 +45,7 @@ The principal responsive transitions are 50rem for sidebar/menu placement and 72
 
 ## Browser enhancement ownership
 
-The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, global controls, prose, TOC, FlexSearch, search, tabs, then code. No client renderer or hydration framework is involved.
+The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, global controls, prose, TOC, MiniSearch, search, tabs, then code. No client renderer or hydration framework is involved.
 
 ### Color mode
 
@@ -79,7 +79,7 @@ Jigyll parses fenced-code metadata and emits the semantic `figure.highlight[data
 
 `assets/js/zzzz-search-data.json` is a front-matter-bearing theme asset whose `search-data` layout runs after Jigyll renders all page bodies. It emits deterministic same-origin records for published default-layout HTML pages and output-enabled collection documents. Each record contains the title, base-URL-correct URL, article text, and Jigyll heading metadata; `search_exclude: true` omits a document. Component regions marked with `data-search-exclude` are delimited by private build-time markers and removed from the article body before text normalization, so illustrative file-tree labels do not enter the corpus.
 
-`assets/flexsearch-0.8.212.min.js` is the pinned Apache-2.0 FlexSearch browser bundle; its license is retained in `assets/flexsearch-LICENSE`. `assets/search.js` normalizes case and canonical Unicode form, requires every token, and allows a prefix only on the final token. It verifies exact matches itself after FlexSearch finds candidates, ranks title/heading/body hits deterministically, and uses text-only DOM APIs for corpus values. The disabled control remains unavailable without JavaScript; the native dialog supplies loading, guidance, results, failure, and retry states.
+The layouts load the MIT-licensed MiniSearch 7.2.0 browser bundle directly from `https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js`, pinned with SHA-384 Subresource Integrity and anonymous CORS. No library bundle or local fallback is shipped. Search requires access to jsDelivr; a Content Security Policy must permit `https://cdn.jsdelivr.net` in its script sources. If the library cannot load, the search control remains disabled. `assets/search.js` uses the same Unicode tokenizer for indexing and matching, normalizes case and canonical Unicode form, requires every token, and allows a prefix only on the final token. It verifies exact matches itself after MiniSearch finds candidates, ranks title/heading/body hits deterministically, and uses text-only DOM APIs for corpus values. The disabled control remains unavailable without JavaScript; the native dialog supplies loading, guidance, results, failure, and retry states.
 
 Highlighting and fenced-code metadata parsing are server-side Jigyll/Chroma behavior. Differences from stock Starlight's code highlighter cannot be repaired by inventing tokens in CSS or the copy handler.
 
