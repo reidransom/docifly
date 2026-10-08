@@ -90,6 +90,6 @@ Open <http://127.0.0.1:4322/>. The site output is `_site/`; the installed theme 
 
 ## Override deliberately
 
-A consumer can supply its own layouts, includes, or assets with the same names to override the installed theme. Ordinary documentation should not need those overrides. In particular, this documentation site supplies none: its real layout, styles, and browser enhancements come from the installed theme.
+A consumer can supply its own layouts, includes, or assets with the same names to override the installed theme. Ordinary documentation should not need those overrides. In particular, this documentation site supplies none: its real layout, styles, and browser enhancements come from Docifly, linked locally for development or installed for consumer verification.
 
 Read [Theme internals](../internals/) before changing shared presentation. Do not turn an example that needs only Markdown into a consumer-specific theme fork.

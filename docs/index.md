@@ -18,7 +18,7 @@ hero:
       variant: minimal
 ---
 
-Docifly is a documentation theme for Jigyll. It uses stock Starlight as the reference for its appearance and responsive behavior, not the customized Starlight website.
+Docifly is a documentation theme for Jigyll. It uses stock Starlight as the reference for its appearance and responsive behavior.
 
 This documentation site runs Docifly. You can try its sidebar, heading links, table of contents, code blocks, and color selector right here.
 
