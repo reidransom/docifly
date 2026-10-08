@@ -1,3 +1,9 @@
+## Development
+
+This repo is both a [jigyll](https://github.com/reidransom/jigyll) theme and a jigyll website that documents the theme and is themed with that theme.
+
+Preview the site (and theme) with [servd](https://github.com/reidransom/servd) in `docs/`.
+
 ## Agent skills
 
 ### Issue tracker
