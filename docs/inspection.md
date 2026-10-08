@@ -53,6 +53,8 @@ Use the selector to choose Light, then navigate to another page. Try Dark and Au
 
 Inspect text, code, focus indicators, and native controls in both palettes. The example image owns its colors and does not recolor merely because the page palette changes.
 
+Check that the theme selector’s caret is a symmetric downward chevron in both palettes.
+
 ## Inspect the fallback when useful
 
 Disable JavaScript in the browser and reload. Read the article, follow links, and use native navigation disclosures. The palette is dark; generated TOC, heading-anchor controls, copying, and mode selection are absent. Re-enable JavaScript afterward.
