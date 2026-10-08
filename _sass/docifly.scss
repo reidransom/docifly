@@ -46,6 +46,7 @@
     --sl-content-inline-start: 0rem;
   }
   html {
+    scrollbar-gutter: stable;
     scroll-padding-top: calc(1.5rem + var(--sl-nav-height) + var(--sl-mobile-toc-height));
   }
   html:not([data-has-toc]) {

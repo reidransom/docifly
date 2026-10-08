@@ -43,6 +43,8 @@ Copying needs JavaScript and browser Clipboard API support. HTTPS or a trustwort
 
 Open Search or press Control+K (Command+K on Apple devices), then confirm the input receives focus. Search a title, a heading, and a code term. A heading result links directly to its existing fragment. Press Escape to return focus to Search.
 
+On a page with a vertical scrollbar, confirm the header and article stay horizontally aligned when opening and closing Search. The page should not scroll behind the open dialog.
+
 Temporarily block `assets/search-data.json` in developer tools to see the visible failure state, then use Retry after unblocking it. With JavaScript disabled, Search remains disabled and cannot receive keyboard focus.
 
 ## Change color preferences
