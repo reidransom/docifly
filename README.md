@@ -53,11 +53,11 @@ jigyll serve --host 127.0.0.1 --port 4322
 
 Open <http://127.0.0.1:4322/>. The generated site is `_site/`.
 
-See [Getting started](docs/site/getting-started.md) for page and navigation examples, then read the guides under [`docs/site/`](docs/site/).
+See [Getting started](docs/getting-started.md) for page and navigation examples, then read the guides under [`docs/`](docs/).
 
 ## Develop the theme
 
-Theme maintainers should use the installed-consumer workflow in [Developing Docifly](docs/site/development.md). It explains how to preview and rebuild this repository's living documentation without making a direct source build look like consumer-installation proof.
+Theme maintainers should use the installed-consumer workflow in [Developing Docifly](docs/development.md). It explains how to preview and rebuild this repository's living documentation without making a direct source build look like consumer-installation proof.
 
 ## Attribution
 

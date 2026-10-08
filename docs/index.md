@@ -5,11 +5,10 @@ permalink: /
 hero:
   tagline: A standalone documentation theme for Jigyll, referenced against stock Starlight.
   image:
-    light: /media/hero-light.svg
-    dark: /media/hero-dark.svg
-    alt: A four-pointed Docifly star
-    width: 400
-    height: 400
+    src: /media/docifly-icon.svg
+    alt: Docifly purple folded D logo
+    width: 505
+    height: 509
   actions:
     - text: Get started
       link: /getting-started/

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="385 241 509 509" role="img" aria-labelledby="title">
+  <title id="title">Docifly icon</title>
+  <defs>
+    <linearGradient id="purple" gradientUnits="userSpaceOnUse" x1="394" y1="700" x2="892" y2="700">
+      <stop offset="0" stop-color="#8b55fb" />
+      <stop offset=".22" stop-color="#7442f9" />
+      <stop offset=".42" stop-color="#5b31f1" />
+      <stop offset=".62" stop-color="#4622dc" />
+      <stop offset="1" stop-color="#290e99" />
+    </linearGradient>
+    <radialGradient id="highlight" gradientUnits="userSpaceOnUse" cx="387" cy="241" r="470" gradientTransform="translate(0 36.15) scale(1 .85)">
+      <stop offset="0" stop-color="#e6b6ff" stop-opacity=".52" />
+      <stop offset=".3" stop-color="#e6b6ff" stop-opacity=".23" />
+      <stop offset=".6" stop-color="#e6b6ff" stop-opacity=".04" />
+      <stop offset="1" stop-color="#e6b6ff" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="fold" gradientUnits="userSpaceOnUse" x1="639" y1="241" x2="886" y2="588">
+      <stop offset="0" stop-color="#b67ffc" />
+      <stop offset=".5" stop-color="#8b4dfb" />
+      <stop offset="1" stop-color="#591dfc" />
+    </linearGradient>
+    <clipPath id="silhouette">
+      <path d="M387 241H638C778.3 241 892 354.7 892 495S778.3 750 638 750H394L438 653C451 625 478 609 510 609H629C664 609 683 591 683 555V400H482C429.5 400 387 357.5 387 305Z" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#silhouette)">
+    <path fill="url(#purple)" d="M387 241H638C778.3 241 892 354.7 892 495S778.3 750 638 750H394L438 653C451 625 478 609 510 609H629C664 609 683 591 683 555V400H482C429.5 400 387 357.5 387 305Z" />
+    <path fill="url(#highlight)" d="M387 241H638C778.3 241 892 354.7 892 495S778.3 750 638 750H394L438 653C451 625 478 609 510 609H629C664 609 683 591 683 555V400H482C429.5 400 387 357.5 387 305Z" />
+    <path fill="url(#fold)" d="M554 241H638C778.3 241 892 354.7 892 495C892 551 874 603 843 645C853 628 858 610 859 589C864 532 824 496 770 451C723 412 695 370 672 321C648 270 610 241 554 241Z" />
+  </g>
+</svg>

@@ -3,6 +3,7 @@ lang: en
 theme: docifly
 url: ""
 baseurl: ""
+favicon_dir: /assets/favicons
 navigation:
   - label: Overview
     link: /

@@ -7,7 +7,7 @@
     "screenshots": "reference-404-{390,799,800,1024,1151,1152,1440}-{light,dark}.png"
   },
   "consumer": {
-    "source": "docs/site",
+    "source": "docs",
     "rootScreenshots": [
       "splash-hero-{390,1024,1440}-{light,dark}.png",
       "doc-hero-{390,1024,1440}-{light,dark}.png",

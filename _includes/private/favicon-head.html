@@ -1,0 +1,8 @@
+{% if site.favicon_dir %}
+<link rel="icon" href="{{ site.favicon_dir | append: '/favicon.ico' | relative_url | escape }}" sizes="any">
+<link rel="icon" href="{{ site.favicon_dir | append: '/favicon-32x32.png' | relative_url | escape }}" type="image/png" sizes="32x32">
+<link rel="icon" href="{{ site.favicon_dir | append: '/favicon.svg' | relative_url | escape }}" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="{{ site.favicon_dir | append: '/apple-touch-icon.png' | relative_url | escape }}" sizes="180x180">
+<link rel="mask-icon" href="{{ site.favicon_dir | append: '/safari-pinned-tab.svg' | relative_url | escape }}" color="#6d35ef">
+<link rel="manifest" href="{{ site.favicon_dir | append: '/site.webmanifest' | relative_url | escape }}">
+{% endif %}

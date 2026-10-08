@@ -17,6 +17,18 @@ hero:
 
 Choose the shell with Jigyll's `layout` front matter. `default` keeps the navigation and heading table of contents. `splash` omits both sidebars and gives the article a wider content region. Either layout can render an optional hero.
 
+## Set the site favicon
+
+Set a root-relative favicon directory in `_config.yml`, without `baseurl`:
+
+```yaml
+favicon_dir: /assets/favicons
+```
+
+The directory contains `favicon.ico`, `favicon.svg`, `favicon-32x32.png`, `apple-touch-icon.png`, `safari-pinned-tab.svg`, and `site.webmanifest`. The manifest references the Android and maskable icons in the same directory. Docifly emits the links in the default, splash, and not-found layouts and applies the deployment prefix. The pinned-tab icon uses the purple tint `#6d35ef`.
+
+Omit `favicon_dir` to emit no favicon links. The documentation site enables the generated Docifly icon set; other sites are not automatically given Docifly branding.
+
 ## Add a hero
 
 Hero text is escaped plain text. Article Markdown begins after the hero. If `hero.title` is absent, the hero uses `page.title`; an empty or absent tagline creates no gap.

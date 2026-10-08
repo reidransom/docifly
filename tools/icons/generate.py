@@ -17,7 +17,7 @@ EXPECTED_COUNT = 130
 EXPECTED_DIGEST = "30012e5593475f9b8a6d8ab0f38bff5bde49aa7c51eec5e55e9b74db1f2976c3"
 OUTPUTS = {
     ROOT / "_includes/private/icon-path.html": "private",
-    ROOT / "docs/site/icons.md": "docs",
+    ROOT / "docs/icons.md": "docs",
 }
 
 

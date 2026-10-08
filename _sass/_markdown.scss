@@ -62,7 +62,6 @@
   .sl-markdown-content :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
     color: var(--sl-color-white);
     line-height: var(--sl-line-height-headings);
-    font-weight: 600;
   }
 
   .sl-markdown-content :is(img, picture, video, canvas, svg, iframe):not(:where(.not-content *)) {

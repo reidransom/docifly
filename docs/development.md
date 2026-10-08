@@ -11,7 +11,7 @@ Install Git and Jigyll 1.13.0 or later. Run these commands from the repository r
 
 ```sh
 jigyll new .poc/living-docs --theme "$PWD"
-cp -R docs/site/. .poc/living-docs/
+cp -R docs/. .poc/living-docs/
 rm .poc/living-docs/404.html
 jigyll serve --source .poc/living-docs --host 127.0.0.1 --port 4322
 ```
@@ -22,10 +22,10 @@ The installer names the theme after the source checkout. If your checkout is not
 
 ## Edit and rebuild
 
-`docs/site/` is the maintained source. `.poc/living-docs/` is a disposable installed consumer, not a second authoring location. After editing source pages, copy them again and build:
+`docs/` is the maintained source. `.poc/living-docs/` is a disposable installed consumer, not a second authoring location. After editing source pages, copy them again and build:
 
 ```sh
-cp -R docs/site/. .poc/living-docs/
+cp -R docs/. .poc/living-docs/
 jigyll build --source .poc/living-docs
 ```
 
